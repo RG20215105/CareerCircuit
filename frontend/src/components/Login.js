@@ -1,12 +1,17 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../actions/userAction";
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 
 
 
 const Login = () => {
   const dispatch = useDispatch();
+let navigate=useNavigate();
+  const {  isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const loginSubmit = (e) => {
@@ -14,6 +19,15 @@ const Login = () => {
     
     dispatch(login(loginEmail, loginPassword));
   };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+     
+      navigate("/account");
+    }
+  
+  }, [dispatch,isAuthenticated]);
+
 
   return (
     <section class="text-gray-400 bg-gray-900 body-font  w-full">
@@ -60,6 +74,7 @@ const Login = () => {
             Literally you probably haven't heard of them jean shorts.
           </p>
           </form>
+         
         </div>
       </div>
     </section>

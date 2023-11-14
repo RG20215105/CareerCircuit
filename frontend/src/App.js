@@ -9,7 +9,7 @@ import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 import store from "./store";
 import ForgotPassword from './components/ForgotPassword.js';
 import ResetPassword from './components/ResetPassword.js';
-
+import Profile from './components/Profile.js';
 
 
 
@@ -26,6 +26,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword />} />
+        <Route path="/account" element={<Profile />}/>
       </Routes>
       <Footer />
     </Router>
