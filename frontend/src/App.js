@@ -7,6 +7,13 @@ import Signin from "./components/Signin.js";
 import Login from "./components/Login.js";
 import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 import store from "./store";
+import ForgotPassword from './components/ForgotPassword.js';
+import ResetPassword from './components/ResetPassword.js';
+
+
+
+
+
 
 function App() {
 
@@ -17,6 +24,8 @@ function App() {
         <Route path="/" element={<Body />} />
         <Route path="/signin" element={<Signin />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/password/forgot" element={<ForgotPassword />} />
+        <Route path="/password/reset/:token" element={<ResetPassword />} />
       </Routes>
       <Footer />
     </Router>

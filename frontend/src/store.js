@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import {
-
+forgotPasswordReducer,
   userReducer,
 } from "./reducers/userReducer";
 
@@ -12,7 +12,7 @@ import {
 const reducer = combineReducers({
   
   user:userReducer,
- 
+  forgotPassword:forgotPasswordReducer,
   
 });
 
