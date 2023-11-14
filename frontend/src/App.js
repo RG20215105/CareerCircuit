@@ -10,7 +10,7 @@ import store from "./store";
 import ForgotPassword from './components/ForgotPassword.js';
 import ResetPassword from './components/ResetPassword.js';
 import Profile from './components/Profile.js';
-
+import UpdateProfile from "./component/UpdateProfile.js"
 
 
 
@@ -27,6 +27,7 @@ function App() {
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword />} />
         <Route path="/account" element={<Profile />}/>
+        <Route path="/me/update" element={<UpdateProfile />}/>
       </Routes>
       <Footer />
     </Router>

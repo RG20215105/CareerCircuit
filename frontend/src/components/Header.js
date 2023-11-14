@@ -5,7 +5,8 @@ const Header = () => {
     <header className="text-gray-400 bg-gray-900 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center font-semibold">
         <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
-          <a className="mr-5 hover:text-purple-500">Home</a>
+          <a className="mr-5 hover:text-purple-500"> <Link to ='/'>
+             Home</Link>  </a>
           <a className="mr-5 hover:text-purple-500">My Network</a>
           <a className="mr-5 hover:text-purple-500">Messages</a>
           <a className="hover:text-purple-500">Notifications</a>
