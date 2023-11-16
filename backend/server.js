@@ -16,7 +16,7 @@ cloudinary.config({
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
-/************** Socket IO code starts ************/
+/************** Socket IO Code starts ****************/
 //connection with socket io
 const server = app.listen(process.env.port, () => {
   console.log(`Listening on port ${process.env.port}`);
@@ -66,7 +66,7 @@ io.on("connection", (socket) => {
     socket.leave(userData._id);
   });
 });
-/************** Socket IO Code ends ****************/
+/************** Socket IO Code ends *****************/
 
 //unhandled promise rejection
 process.on("unhandledRejection", (err) => {
