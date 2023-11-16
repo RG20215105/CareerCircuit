@@ -8,7 +8,6 @@ const {
   renameGroup,
 } = require("../controllers/chatController");
 const { protect } = require("../middleware/authMiddleware");
-21;
 
 const router = express.Router();
 

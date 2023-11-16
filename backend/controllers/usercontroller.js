@@ -6,6 +6,28 @@ const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");
 const cloudinary = require("cloudinary");
 
+// Get all the connections of the currently logged in User
+exports.allConnections = catchasyncerrors(async (req, res, next) => {
+  // Middleware will provide req.user._id as the id of the loggedin user
+  try {
+    const loggedInUser = await loggedInUser
+      .findById(req.user._id)
+      .populate("connections", "-password");
+
+    if (!loggedInUser) {
+      return next(new ErrorHandler("User not found", 404));
+    }
+
+    const userConnections = loggedInUser.connections; // This is an array of populated Users
+    return res.status(200).json({
+      success: true,
+      connections: userConnections,
+    });
+  } catch (err) {
+    return next(new ErrorHandler(err.message, 400));
+  }
+});
+
 //register user
 exports.registerUser = catchasyncerrors(async (req, res, next) => {
   // const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
