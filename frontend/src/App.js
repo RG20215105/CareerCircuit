@@ -9,6 +9,7 @@ import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 import Company from "./components/Company.jsx"
 import CompanyLogin from "./components/CompanyLogin.jsx"
 import CompanySignin from "./components/CompanySignin.jsx"
+import Profile from './components/Profile.jsx';
 
 function App() {
 
@@ -22,6 +23,7 @@ function App() {
         <Route path="/company" element={<Company />} />
         <Route path="/company/login" element={<CompanyLogin />} />
         <Route path="/company/signin" element={<CompanySignin />} />
+        <Route path="/profile" element={<Profile/>} />
       </Routes>
       <Footer />
     </Router>
