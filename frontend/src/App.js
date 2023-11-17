@@ -10,7 +10,7 @@ import Company from "./components/Company.jsx"
 import CompanyLogin from "./components/CompanyLogin.jsx"
 import CompanySignin from "./components/CompanySignin.jsx"
 import Profile from './components/Profile.jsx';
-
+import PostJob from './components/PostJob.jsx';
 function App() {
 
   return (
@@ -24,6 +24,7 @@ function App() {
         <Route path="/company/login" element={<CompanyLogin />} />
         <Route path="/company/signin" element={<CompanySignin />} />
         <Route path="/profile" element={<Profile/>} />
+        <Route path="/postjob" element={<PostJob/>} />
       </Routes>
       <Footer />
     </Router>

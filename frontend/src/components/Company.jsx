@@ -22,9 +22,9 @@ const Company = () => {
             
           </p>
           <div class="flex md:mt-4 mt-6">
-            <button class="inline-flex text-white bg-yellow-600 border-0 py-1 px-4 focus:outline-none hover:bg-yellow-700 rounded">
-              <Link to="/company/signin">Register Company</Link>
-            </button>
+            <Link to="/company/signin"><button class="inline-flex text-white bg-yellow-600 border-0 py-1 px-4 focus:outline-none hover:bg-yellow-700 rounded">
+              Register Company
+            </button></Link>
             <Link to="/company/login" className="mx-4 font-semibold  text-yellow-500 underline hover:text-yellow-700">Login</Link>
             <Link to="/companypage" className="mx-4 font-semibold  text-purple-500 underline hover:text-purple-700">Explore Companies</Link>
             </div>

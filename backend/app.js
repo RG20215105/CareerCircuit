@@ -1,7 +1,7 @@
 const express=require("express");
 const app=express();
 const cookieParser=require("cookie-parser")
-
+const cors = require('cors')
 const bodyParser=require("body-parser");
 const fileupload=require("express-fileupload");
 const dotenv=require("dotenv");
@@ -13,14 +13,14 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(bodyParser.urlencoded({extended:true,parameterLimit:100000,limit:'500mb'}));
 app.use(fileupload());
-
+app.use(cors());
 //route imports
 
 const user=require("./routes/userroute");
-
+const jobRouter = require('./routes/jobroute');
 
 app.use(user);
-
+app.use(jobRouter);
 
 
 

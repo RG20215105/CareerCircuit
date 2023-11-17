@@ -2,6 +2,11 @@ import { useSelector } from "react-redux/es/hooks/useSelector";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
+
+
+import { Link } from "react-router-dom";
+
+
 const Profile = ()=> {
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -20,7 +25,7 @@ const Profile = ()=> {
 
     return (
         <section class="text-gray-400 bg-gray-900 body-font">
-  <div class="container px-5 py-14 mx-auto flex flex-col">
+  <div class="container px-5 py-2 mx-auto flex flex-col">
     <div class="lg:w-4/6 mx-auto">
       
       <div class="flex flex-col sm:flex-row mt-10">
@@ -54,9 +59,18 @@ const Profile = ()=> {
             {user.isCompany ? 
             <>
             <div className="flex flex-col gap-2">
-              <button class="text-white w-2/3 bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">Update Profile</button>
-              <button class="text-white w-2/3 bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">Post a Job</button>
-              <button class="text-white w-2/3 bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">Post a new Product</button>
+              <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+                Update Profile
+              </button></Link>
+              <Link to="/postjob"><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+                Post a Job
+              </button></Link>
+               <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+               All Jobs
+              </button></Link>
+              <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+                Post a Product
+              </button></Link>
             </div>
             </>
             
@@ -64,10 +78,19 @@ const Profile = ()=> {
             
             <>
             <div className="flex flex-col gap-2">
-              <button class="text-white w-2/3 bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">Update Profile</button>
-              <button class="text-white w-2/3 bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">See Applied Jobs</button>
-              <button class="text-white w-2/3 bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">See connections</button>
-              <button class="text-white w-2/3 bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">Create a new Post</button>
+              
+            <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+                Update Profile
+              </button></Link>
+              <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+                See connections
+              </button></Link>
+              <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+                Applied Jobs
+              </button></Link>
+              <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+                Create a new Post
+              </button></Link>
             </div>
             </>
             }

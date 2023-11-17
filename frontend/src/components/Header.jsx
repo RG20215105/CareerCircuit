@@ -9,6 +9,7 @@ const Header = () => {
   const dispatch = useDispatch();
   const logoutHandler = ()=>{
     dispatch(logout())
+    navigate("/");
   }
   useEffect( ()=>{
     if(isAuthenticated){
