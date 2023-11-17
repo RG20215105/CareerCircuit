@@ -18,10 +18,11 @@ const Signin = () => {
         email: "",
         password: "",
         phoneno:"",
+        isCompany : false,
       });
       const [avatar, setAvatar] = useState(google);
       const [avatarPreview, setAvatarPreview] = useState(google);
-      const { name, email, password,phoneno } = user;
+      const { name, email, password,phoneno , isCompany} = user;
 
 
       const registerSubmit = (e) => {
@@ -34,6 +35,7 @@ const Signin = () => {
         myForm.set("password", password);
         myForm.set("phoneno", phoneno);
         myForm.set("avatar", avatar);
+        myForm.set("isCompany", isCompany);
         dispatch(register(myForm));
       };
       
@@ -127,8 +129,9 @@ const Signin = () => {
                 />
               </div>
               <div class="relative mb-4" id="registerImage">
-                      <img src={avatarPreview} alt="Avatar Preview" />
+                      <img className="w-2/6" src={avatarPreview} alt="Avatar Preview" />
                       <input
+                      
                         type="file"
                         name="avatar"
                         accept="image/*"
