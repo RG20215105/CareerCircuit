@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import google from "../common/img/google.png";
+import sample from "../common/img/sample.png";
 import axios from "axios";
 const PostProduct = () => {
   const navigate = useNavigate();
@@ -19,8 +19,8 @@ const PostProduct = () => {
     category: "",
     price: "",
   });
-    const [image, setImage] = useState(google);
-    const [imagePreview,setImagePreview] = useState(google);
+    const [image, setImage] = useState(sample);
+    const [imagePreview,setImagePreview] = useState(sample);
 
   const postData = ()=> {
     axios.post('http://localhost:4000/postproduct', {

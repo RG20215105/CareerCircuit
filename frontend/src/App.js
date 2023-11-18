@@ -14,6 +14,9 @@ import PostJob from './components/PostJob.jsx';
 import Jobs from './components/Jobs.jsx';
 import PostProduct from './components/PostProduct.jsx';
 import MyJobs from './components/MyJobs.jsx';
+import MyProducts from "./components/MyProducts.jsx";
+
+
 function App() {
 
   return (
@@ -31,6 +34,7 @@ function App() {
         <Route path="/jobs" element={<Jobs/>} />
         <Route path="/company/getjobs" element={<MyJobs/>} />
         <Route path="/company/createproduct" element={<PostProduct/>} />
+        <Route path="/company/allproducts" element={ <MyProducts/>}></Route>
       </Routes>
       <Footer />
     </Router>

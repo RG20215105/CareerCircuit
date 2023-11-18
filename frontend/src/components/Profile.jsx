@@ -59,17 +59,20 @@ const Profile = ()=> {
             {user.isCompany ? 
             <>
             <div className="flex flex-col gap-2">
-              <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+              <Link to=""><button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                 Update Profile
               </button></Link>
-              <Link to="/postjob"><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+              <Link to="/postjob"><button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                 Post a Job
               </button></Link>
-               <Link to="/company/getjobs"><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+               <Link to="/company/getjobs"><button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                All Jobs
               </button></Link>
-              <Link to="/company/createproduct"><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+              <Link to="/company/createproduct"><button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                 Post a Product
+              </button></Link>
+              <Link to="/company/allproducts"><button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+                See All Products
               </button></Link>
             </div>
             </>
@@ -79,16 +82,16 @@ const Profile = ()=> {
             <>
             <div className="flex flex-col gap-2">
               
-            <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+            <Link to=""><button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                 Update Profile
               </button></Link>
-              <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+              <Link to=""><button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                 See connections
               </button></Link>
-              <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+              <Link to=""><button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                 Applied Jobs
               </button></Link>
-              <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+              <Link to=""><button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                 Create a new Post
               </button></Link>
             </div>

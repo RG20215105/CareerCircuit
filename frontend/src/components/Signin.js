@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userAction";
 
 import { useNavigate} from 'react-router-dom';
-import google from "../common/img/google.png";
+import sample from "../common/img/sample.png";
 
 
 
@@ -20,8 +20,8 @@ const Signin = () => {
         phoneno:"",
         isCompany : false,
       });
-      const [avatar, setAvatar] = useState(google);
-      const [avatarPreview, setAvatarPreview] = useState(google);
+      const [avatar, setAvatar] = useState(sample);
+      const [avatarPreview, setAvatarPreview] = useState(sample);
       const { name, email, password,phoneno , isCompany} = user;
 
 

@@ -1,8 +1,7 @@
 
 const Product = require('../models/productsmodel');
 const cloudinary=require("cloudinary");
-
-
+const User = require('../models/usermodels');
 
 exports.postProduct = async (req,res) => {
     try {
@@ -24,6 +23,9 @@ exports.postProduct = async (req,res) => {
                 url: myCloud.secure_url,
             }
         })
+        const user = await User.findById(info.companyID);
+        user.products.push(product._id);
+        user.save();
     
         res.status(201).json({
             success: true,
@@ -33,4 +35,13 @@ exports.postProduct = async (req,res) => {
         console.log(error);
     }
 
+}
+
+exports.getProducts = async(req,res)=>{
+    try {
+        const data = await Product.find({});
+        res.send(data);
+    } catch (error) {
+        console.log(error);
+    }
 }

@@ -44,6 +44,11 @@ const userSchema = new mongoose.Schema({
         type:Date,
         default:Date.now(),
     },
+    products :[ {
+            typeof : mongoose.Schema.Types.ObjectId ,
+        }
+    ]
+    ,
     appliedJobs : [
         {
             type : mongoose.Schema.Types.ObjectId,
