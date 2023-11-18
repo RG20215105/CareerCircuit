@@ -76,7 +76,9 @@ const Jobs = () => {
   return (
     <>
       {data.length === 0 ? (
-        "LOADING DATA"
+        <p class="text-gray-400 body-font bg-gray-900">
+          Fetching data...please hang on..!
+        </p> 
       ) : (
         <>
           <section class="text-gray-400 body-font bg-gray-900">

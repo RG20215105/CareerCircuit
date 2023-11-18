@@ -68,7 +68,7 @@ const Profile = ()=> {
                <Link to="/company/getjobs"><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                All Jobs
               </button></Link>
-              <Link to=""><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+              <Link to="/company/createproduct"><button class="text-white w-full bg-pink-500 border-0 py-2 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                 Post a Product
               </button></Link>
             </div>

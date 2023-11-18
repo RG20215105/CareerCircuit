@@ -18,10 +18,11 @@ app.use(cors());
 
 const user=require("./routes/userroute");
 const jobRouter = require('./routes/jobroute');
+const productRouter = require('./routes/productroute')
 
 app.use(user);
 app.use(jobRouter);
-
+app.use(productRouter);
 
 
 

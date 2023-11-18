@@ -12,6 +12,7 @@ import CompanySignin from "./components/CompanySignin.jsx"
 import Profile from './components/Profile.jsx';
 import PostJob from './components/PostJob.jsx';
 import Jobs from './components/Jobs.jsx';
+import PostProduct from './components/PostProduct.jsx';
 import MyJobs from './components/MyJobs.jsx';
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
         <Route path="/postjob" element={<PostJob/>} />
         <Route path="/jobs" element={<Jobs/>} />
         <Route path="/company/getjobs" element={<MyJobs/>} />
+        <Route path="/company/createproduct" element={<PostProduct/>} />
       </Routes>
       <Footer />
     </Router>
