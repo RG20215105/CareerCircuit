@@ -33,6 +33,7 @@ exports.getAllJobs = async (req,res) => {
 //apply for job
 exports.applyJob=async (req,res)=>{
     // console.log(req.body);
+    
     const {jobID, userID} = req.body;
 
     const job = await Job.findById(jobID);
@@ -45,4 +46,15 @@ exports.applyJob=async (req,res)=>{
     
     
     res.send(user.appliedJobs);
+}
+
+exports.getMyJobs = async(req,res) => {
+    try {
+        
+        const list = await Job.find( {} );
+        // console.log(list);
+        res.send(list);  
+    } catch (error) {
+        console.log(err);
+    }
 }

@@ -12,6 +12,7 @@ import CompanySignin from "./components/CompanySignin.jsx"
 import Profile from './components/Profile.jsx';
 import PostJob from './components/PostJob.jsx';
 import Jobs from './components/Jobs.jsx';
+import MyJobs from './components/MyJobs.jsx';
 function App() {
 
   return (
@@ -27,6 +28,7 @@ function App() {
         <Route path="/profile" element={<Profile/>} />
         <Route path="/postjob" element={<PostJob/>} />
         <Route path="/jobs" element={<Jobs/>} />
+        <Route path="/company/getjobs" element={<MyJobs/>} />
       </Routes>
       <Footer />
     </Router>

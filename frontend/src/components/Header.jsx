@@ -34,7 +34,7 @@ const Header = () => {
          
           { isAuthenticated ?
             <>
-              <Link to='/profile' className="mx-2 hover:text-pink-500">{user.name}</Link>
+              <Link to='/profile' className="mx-2 hover:text-pink-500" title="Profile">{user.name}</Link>
               <button
               onClick={logoutHandler}
                className="inline-flex items-center bg-pink-500 border-0 py-1 px-3 text-white font-semibold focus:outline-  hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
