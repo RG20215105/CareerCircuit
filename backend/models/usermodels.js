@@ -44,6 +44,12 @@ const userSchema = new mongoose.Schema({
         type:Date,
         default:Date.now(),
     },
+    appliedJobs : [
+        {
+            type : mongoose.Schema.Types.ObjectId,
+            ref : 'Job',
+        }
+    ],
     resetPasswordToken:{type:String},
     resetPasswordExpire:{type:Date}
 });

@@ -1,4 +1,8 @@
+const { application } = require("express");
 const Job = require("../models/jobmodel")
+const User = require("../models/usermodels");
+
+//posting a job
 exports.postJob = async(req,res) =>{
     // console.log(req.body.job.company);
     const jobDetails = req.body.job;
@@ -18,4 +22,27 @@ exports.postJob = async(req,res) =>{
         message:"Job Created",
     })
 }
+//jobs home page
+exports.getAllJobs = async (req,res) => {
+    // console.log("Called")
+    const data = await Job.find({}).populate("companyID");
+    res.send(data);
+}
 
+
+//apply for job
+exports.applyJob=async (req,res)=>{
+    // console.log(req.body);
+    const {jobID, userID} = req.body;
+
+    const job = await Job.findById(jobID);
+    job.applications.push(userID);
+    job.save();
+
+    const user = await User.findById(userID);
+    user.appliedJobs.push(jobID);
+    user.save();
+    
+    
+    res.send(user.appliedJobs);
+}

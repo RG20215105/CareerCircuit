@@ -67,8 +67,9 @@ const Signin = () => {
       
 
       return (
-        <section class="text-gray-400 bg-gray-900 body-font  w-full">
-          <div class="container px-5 py-24 mx-auto flex flex-wrap items-center">
+        <section class ="text-gray-400 bg-gray-900 body-font  w-full">
+          
+          <div class="container px-5 py-8 mx-auto flex flex-wrap items-center">
             <div class="lg:w-3/5 md:w-1/2 md:pr-16 lg:pr-0 pr-0">
               <h1 class="title-font font-medium text-3xl text-white">
                 Career Circuit
@@ -79,7 +80,7 @@ const Signin = () => {
             </div>
             <div class="lg:w-2/6 md:w-1/2 bg-gray-800 bg-opacity-50 rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0">
               <h2 class="text-white text-lg font-medium title-font mb-5">
-                Sign Up
+                Sign Up - Users
               </h2>
               <form  encType="multipart/form-data" onSubmit={registerSubmit} >
               <div class="relative mb-4">

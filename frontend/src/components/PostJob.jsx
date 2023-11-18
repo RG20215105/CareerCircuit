@@ -47,7 +47,7 @@ const PostJob = () => {
         notify();
         setTimeout(()=>{
           navigate('/profile')
-        },5500)
+        },2000)
       })
       .catch(function (error) {
         console.log(error);
@@ -148,7 +148,7 @@ const PostJob = () => {
           </div>
         </div>
       </section>
-      <ToastContainer />
+      <ToastContainer autoClose={2000} theme="dark"/>
     </>
   );
 };
