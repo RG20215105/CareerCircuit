@@ -15,7 +15,7 @@ import Jobs from './components/Jobs.jsx';
 import PostProduct from './components/PostProduct.jsx';
 import MyJobs from './components/MyJobs.jsx';
 import MyProducts from "./components/MyProducts.jsx";
-
+import Applicants from './components/Applicants.jsx';
 
 function App() {
 
@@ -35,6 +35,7 @@ function App() {
         <Route path="/company/getjobs" element={<MyJobs/>} />
         <Route path="/company/createproduct" element={<PostProduct/>} />
         <Route path="/company/allproducts" element={ <MyProducts/>}></Route>
+        <Route path="/company/applicants" element={ <Applicants/>}></Route>
       </Routes>
       <Footer />
     </Router>

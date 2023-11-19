@@ -1,4 +1,4 @@
-const {postJob,getAllJobs, applyJob,getMyJobs} = require( "../controllers/jobcontroller" );
+const {postJob,getAllJobs, applyJob,getMyJobs,getApplicants} = require( "../controllers/jobcontroller" );
 
 
 const express = require("express");
@@ -10,6 +10,7 @@ router.route("/postjob").post(postJob);
 router.route('/getjobs').get(getAllJobs);
 router.route('/applyjob').put(applyJob);
 router.route('/getmyjobs').get(getMyJobs);
+router.route('/getapplicants').post(getApplicants);
 
 
 

@@ -58,3 +58,16 @@ exports.getMyJobs = async(req,res) => {
         console.log(err);
     }
 }
+
+exports.getApplicants = async(req,res)=>{
+    
+    try {
+        const jobID = req.body.id;
+        const job = await Job.findById(jobID).populate("applications");
+    
+        res.send(job);
+        
+    } catch (error) {
+        console.log(error);        
+    }
+}

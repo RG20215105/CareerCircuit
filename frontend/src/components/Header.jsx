@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink,Link, useNavigate } from "react-router-dom";
 import { logout } from "../actions/userAction";
 import { useEffect } from "react";
 const Header = () => {
@@ -20,11 +20,11 @@ const Header = () => {
     <header className="text-gray-400 bg-gray-900 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center font-semibold">
         <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
-          <Link to="/" className="mr-5 hover:text-purple-500"> Home</Link>
-          <Link to="/network" className="mr-5 hover:text-purple-500">My Network</Link>
-          <Link to="/chats" className="mr-5 hover:text-purple-500">Messages</Link>
-          <Link to="/notifications" className="mr-5 hover:text-purple-500">Notifications</Link>
-          <Link to="/jobs" className="hover:text-yellow-500">Jobs</Link>
+          <NavLink to="/" className="mr-5 hover:text-purple-500 active:text-white"> Home</NavLink>
+          <NavLink to="/network" className="mr-5 hover:text-purple-500">My Network</NavLink>
+          <NavLink to="/chats" className="mr-5 hover:text-purple-500">Messages</NavLink>
+          <NavLink to="/notifications" className="mr-5 hover:text-purple-500">Notifications</NavLink>
+          <NavLink to="/jobs" className="hover:text-yellow-500 ">Jobs</NavLink>
         </nav>
         
         <a className="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-white lg:items-center lg:justify-center mb-4 md:mb-0">

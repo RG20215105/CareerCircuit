@@ -10,6 +10,11 @@ const MyJobs = () => {
   const [jobsList, setJobsList] = useState([]);
   const { isAuthenticated, user } = useSelector((state) => state.user);
 
+  function loadApplicants(itemID){
+    // console.log(itemID);
+    navigate('/company/applicants', { state : {id : itemID} });
+  }
+
   useEffect(() => {
     if (!isAuthenticated || (isAuthenticated && !user.isCompany)) {
       navigate("/company/login");
@@ -35,13 +40,13 @@ const MyJobs = () => {
       ) : (
         <section class="text-gray-400 bg-gray-900 body-font overflow-hidden">
           <h1 class="px-16 py-8 sm:text-3xl  text-2xl font-medium title-font mb-2 text-yellow-500">
-            All Posted Jobs - Company {user.name}
+            All Posted Jobs <p className="text-base pt-2 text-white">Company : {user.name} </p>
           </h1>
           <div class="container px-5 py-8 mx-auto">
             <div class="-my-8 divide-y-2 divide-gray-800">
               {jobsList.map((item) => {
                 return (
-                  <div class="py-8 flex flex-wrap md:flex-nowrap">
+                  <div class="py-8 flex flex-wrap md:flex-nowrap" key={item._id}>
                     <div class="md:w-64 md:mb-0 mb-6 flex-shrink-0 flex flex-col">
                       <span class="font-semibold title-font text-yellow-500">
                         {item.profileName}
@@ -54,7 +59,11 @@ const MyJobs = () => {
                       <h2 class="text-2xl font-medium text-white title-font mb-2">
                         {item.description}
                         <br />
-                        <Link title="See Applicants" className="mx-2 flex flex-row font-thin text-base text-green-500 hover:underline hover:text-teal-500">
+                        <a title="See Applicants" 
+                        onClick={()=>{
+                          loadApplicants(item._id);
+                        }}
+                        className="mx-2 flex flex-row font-thin text-base text-green-500 hover:underline hover:text-teal-500">
                           <p>Applications : {item.applications.length}</p>
                           <svg
                             class="my-1 w-4 h-4 ml-2"
@@ -68,7 +77,7 @@ const MyJobs = () => {
                             <path d="M5 12h14"></path>
                             <path d="M12 5l7 7-7 7"></path>
                           </svg>
-                        </Link>
+                        </a>
                       </h2>
                     </div>
                     <span class="mt-1 text-white-500 text-sm mr-6">
