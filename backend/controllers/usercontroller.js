@@ -197,6 +197,7 @@ exports.createpost = catchasyncerrors(async (req, res, next) => {
             url: result.secure_url,
         });
     }
+
     req.body.images = imageslink;
     req.body.user = req.user.id;
     const post = await Post.create(req.body);
@@ -216,3 +217,22 @@ exports.getallposts=catchasyncerrors(async(req,res,next)=>{
         posts,
     });
 });  
+
+//create new comment
+exports.createcomment=catchasyncerrors(async(req,res,next)=>{
+    let post = await Post.findById(req.body.postID);
+    if (!post) {
+        return next(new ErrorHandler("Product not found", 404));
+    }
+    myComment = {
+        "commenter" : `${req.user.id}`, 
+        "com" : `${req.body.comment}`
+    };
+   post.usercomment.push(myComment);
+   await post.save();
+    res.status(200).json({
+        success:true,
+        post,
+    });
+});  
+

@@ -28,6 +28,9 @@ NEW_POST_RESET,
 ALL_POST_FAIL,
 ALL_POST_REQUEST,
 ALL_POST_SUCCESS,
+NEW_COMMENT_REQUEST,
+NEW_COMMENT_SUCCESS,
+NEW_COMMENT_FAIL,
 
 
   CLEAR_ERRORS,
@@ -194,7 +197,7 @@ export const postReducer = (state = { }, action) => {
       return {
         loading: false,
         success: action.payload.success,
-        product: action.payload.post,
+        post: action.payload.post,
       };
     case NEW_POST_FAIL:
       return {

@@ -25,6 +25,10 @@ import {
   ALL_POST_FAIL,
   ALL_POST_REQUEST,
   ALL_POST_SUCCESS,
+  NEW_COMMENT_REQUEST,
+  NEW_COMMENT_SUCCESS,
+  NEW_COMMENT_FAIL,
+
 
   CLEAR_ERRORS,
 } from "../constants/userConstants";
@@ -198,6 +202,25 @@ export const getallPost =() => async (dispatch) => {
     } catch (error) {
       dispatch({
         type: ALL_POST_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+
+//comment
+  export const Comment = (userData) => async (dispatch) => {
+    try {
+      dispatch({ type: NEW_COMMENT_REQUEST });
+  
+      const config = { headers: { "Content-Type": "application/json" } };
+  
+      const { data } = await axios.put(`/docomment`, userData, config);
+  
+      dispatch({ type: NEW_COMMENT_SUCCESS, payload: data.success });
+    } catch (error) {
+      dispatch({
+        type: NEW_COMMENT_FAIL,
         payload: error.response.data.message,
       });
     }

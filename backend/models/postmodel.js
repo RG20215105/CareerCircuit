@@ -8,23 +8,35 @@ const postSchema = new mongoose.Schema({
         ref:"User",
         required:true,
     },
-            images:[ 
-                {
-                    public_id: {
-                        type: String
-                        
-                    }, 
-                    url: {
-                        type: String
-                        
-                    }
-                }]
-            ,
-            comment: {
+    images:[ 
+        {
+            public_id: {
+                type: String
+                
+            }, 
+            url: {
                 type: String
                 
             }
-    ,
+        }
+    ],
+    comment: {
+        type: String
+        
+    },
+    usercomment:[
+        {
+            commenter:{
+                type:mongoose.Schema.ObjectId,
+                ref:"User",
+            },
+            com: {
+                type: String
+                
+            }
+
+        }
+    ],
     createdAt:{
         type:Date,
         default:Date.now(),

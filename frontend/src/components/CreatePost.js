@@ -9,7 +9,7 @@ const CreatePost = () => {
   const navigate=useNavigate();
 
   const { user } = useSelector((state) => state.user);
-  const { success } = useSelector((state) => state.post);
+  const { success } = useSelector((state) => state.newpost);
   const [comment, setComment] = useState("");
   const [images, setImages] = useState([]);
   const [imagesPreview, setImagesPreview] = useState([]);
@@ -88,3 +88,11 @@ const CreatePost = () => {
 };
 
 export default CreatePost;
+
+
+
+
+
+
+
+
