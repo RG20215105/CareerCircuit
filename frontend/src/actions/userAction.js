@@ -31,6 +31,9 @@ import {
   POST_DETAILS_REQUEST,
   POST_DETAILS_FAIL,
   POST_DETAILS_SUCCESS,
+  NEW_LIKE_REQUEST,
+  NEW_LIKE_SUCCESS,
+  NEW_LIKE_FAIL,
 
   CLEAR_ERRORS,
 } from "../constants/userConstants";
@@ -242,6 +245,24 @@ export const getallPost =() => async (dispatch) => {
     } catch (error) {
       dispatch({
         type: POST_DETAILS_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+  //like
+  export const Like = (userData) => async (dispatch) => {
+    try {
+      dispatch({ type: NEW_LIKE_REQUEST });
+  
+      const config = { headers: { "Content-Type": "application/json" } };
+  
+      const { data } = await axios.put(`/dolike`, userData, config);
+  
+      dispatch({ type: NEW_LIKE_SUCCESS, payload: data.success });
+    } catch (error) {
+      dispatch({
+        type: NEW_LIKE_FAIL,
         payload: error.response.data.message,
       });
     }

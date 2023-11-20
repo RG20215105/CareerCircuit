@@ -222,7 +222,7 @@ exports.getallposts=catchasyncerrors(async(req,res,next)=>{
 exports.createcomment=catchasyncerrors(async(req,res,next)=>{
     let post = await Post.findById(req.body.postID);
     if (!post) {
-        return next(new ErrorHandler("Product not found", 404));
+        return next(new ErrorHandler("Post not found", 404));
     }
     myComment = {
         "commenter" : `${req.user.id}`, 
@@ -247,3 +247,22 @@ exports.getPostDetails=catchasyncerrors(async(req,res,next)=>{
     });
 });  
 
+
+//create new like
+exports.createlike=catchasyncerrors(async(req,res,next)=>{
+    console.log(req.body);
+    let post = await Post.findById(req.body.postID);
+    if (!post) {
+        return next(new ErrorHandler("Post not found", 404));
+    }
+    myLike = {
+        "liker" : `${req.user.id}`, 
+        "liketype" : `${req.body.liketype}`
+    };
+   post.userlikes.push(myLike);
+   await post.save();
+    res.status(200).json({
+        success:true,
+        post,
+    });
+});  

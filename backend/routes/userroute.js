@@ -1,5 +1,5 @@
 const express = require("express");
-const { registerUser,loginUser,logout, forgotpassword,resetPasswords,getuserdetails, updatepass, updateprofile, createpost, getallposts, createcomment,getPostDetails} = require("../controllers/usercontroller");
+const { registerUser,loginUser,logout, forgotpassword,resetPasswords,getuserdetails, updatepass, updateprofile, createpost, getallposts, createcomment,getPostDetails, createlike} = require("../controllers/usercontroller");
 const{isAuthenticatedUser}=require("../middleware/auth");
 
 
@@ -17,6 +17,7 @@ router.route("/me/post").post(isAuthenticatedUser,createpost);
 router.route("/allposts").get(getallposts);
 router.route("/docomment").put(isAuthenticatedUser,createcomment);
 router.route("/post/:id").get(getPostDetails);
+router.route("/dolike").put(isAuthenticatedUser,createlike);
 
 
 module.exports=router;

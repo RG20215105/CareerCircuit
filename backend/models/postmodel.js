@@ -12,17 +12,14 @@ const postSchema = new mongoose.Schema({
         {
             public_id: {
                 type: String
-                
             }, 
             url: {
-                type: String
-                
+                type: String 
             }
         }
     ],
     comment: {
         type: String
-        
     },
     usercomment:[
         {
@@ -33,7 +30,6 @@ const postSchema = new mongoose.Schema({
             com: {
                 type: String 
             }
-
         }
     ],
     userlikes:[
