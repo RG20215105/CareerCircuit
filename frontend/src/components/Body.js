@@ -27,7 +27,7 @@ const copytext=()=>{
   if(!isAuthenticated){
     navigate('/login');
   }
-  let link=`https//localhost:3000/${postid}`;
+  let link=`http://localhost:3000/post/${postid}`;
   navigator.clipboard.writeText(link);
 }
 

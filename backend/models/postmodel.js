@@ -31,10 +31,20 @@ const postSchema = new mongoose.Schema({
                 ref:"User",
             },
             com: {
-                type: String
-                
+                type: String 
             }
 
+        }
+    ],
+    userlikes:[
+        {
+            liker:{
+                type:mongoose.Schema.ObjectId,
+                ref:"User",
+            },
+            liketype:{
+                type:String
+            }
         }
     ],
     createdAt:{

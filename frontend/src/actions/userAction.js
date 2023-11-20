@@ -28,7 +28,9 @@ import {
   NEW_COMMENT_REQUEST,
   NEW_COMMENT_SUCCESS,
   NEW_COMMENT_FAIL,
-
+  POST_DETAILS_REQUEST,
+  POST_DETAILS_FAIL,
+  POST_DETAILS_SUCCESS,
 
   CLEAR_ERRORS,
 } from "../constants/userConstants";
@@ -221,6 +223,25 @@ export const getallPost =() => async (dispatch) => {
     } catch (error) {
       dispatch({
         type: NEW_COMMENT_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+  //get post details
+
+  export const getPostDetails=(id)=>async(dispatch)=>{
+    try{
+      dispatch({ type: POST_DETAILS_REQUEST });
+  
+      const config = { headers: { "Content-Type": "application/json" } };
+  
+      const { data } = await axios.get(`/post/${id}`, config);
+  
+      dispatch({ type:POST_DETAILS_SUCCESS, payload: data });
+    } catch (error) {
+      dispatch({
+        type: POST_DETAILS_FAIL,
         payload: error.response.data.message,
       });
     }

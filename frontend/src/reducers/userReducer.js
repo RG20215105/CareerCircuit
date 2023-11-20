@@ -31,7 +31,9 @@ ALL_POST_SUCCESS,
 NEW_COMMENT_REQUEST,
 NEW_COMMENT_SUCCESS,
 NEW_COMMENT_FAIL,
-
+POST_DETAILS_REQUEST,
+POST_DETAILS_FAIL,
+POST_DETAILS_SUCCESS,
 
   CLEAR_ERRORS,
 } from "../constants/userConstants";
@@ -237,6 +239,34 @@ export const postsReducer = (state = { posts: [] }, action) => {
 
     case ALL_POST_FAIL:
     
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+    default:
+      return state;
+  }
+};
+
+export const postDetailsReducer = (state = { post: {} }, action) => {
+  switch (action.type) {
+    case POST_DETAILS_REQUEST:
+      return {
+        loading: true,
+        ...state,
+      };
+    case POST_DETAILS_SUCCESS:
+      return {
+        loading: false,
+        post: action.payload.post,
+      };
+    case POST_DETAILS_FAIL:
       return {
         loading: false,
         error: action.payload,

@@ -236,3 +236,14 @@ exports.createcomment=catchasyncerrors(async(req,res,next)=>{
     });
 });  
 
+
+//get post details
+exports.getPostDetails=catchasyncerrors(async(req,res,next)=>{
+    const postID=req.params.id;
+    let post = await Post.findById(postID);
+    res.status(200).json({
+        success:true,
+        post,
+    });
+});  
+

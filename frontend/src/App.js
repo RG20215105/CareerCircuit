@@ -13,7 +13,7 @@ import Profile from './components/Profile.js';
 import UpdateProfile from "./components/UpdateProfile.js"
 import UpdatePassword from "./components/UpdatePassword.js"
 import CreatePost from "./components/CreatePost.js"
-
+import DisplayPost from "./components/DisplayPost.js"
 
 function App() {
 
@@ -30,6 +30,7 @@ function App() {
         <Route path="/me/update" element={<UpdateProfile />}/>
         <Route path="/password/update" element={<UpdatePassword />}/>
         <Route path="/me/post" element={<CreatePost />}/>
+        <Route path="/post/:id" element={<DisplayPost />}/>
       </Routes>
       <Footer />
     </Router>
