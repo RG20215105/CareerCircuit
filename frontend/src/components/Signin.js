@@ -19,7 +19,7 @@ const Signin = () => {
         password: "",
         phoneno:"",
       });
-      const [avatar, setAvatar] = useState(google);
+      const [avatar, setAvatar] = useState();
       const [avatarPreview, setAvatarPreview] = useState(google);
       const { name, email, password,phoneno } = user;
 

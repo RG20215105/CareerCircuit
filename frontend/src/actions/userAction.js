@@ -19,8 +19,12 @@ import {
   UPDATE_PASSWORD_REQUEST,
   UPDATE_PASSWORD_SUCCESS,
   UPDATE_PASSWORD_FAIL,
-  
-
+  NEW_POST_REQUEST,
+  NEW_POST_SUCCESS,
+  NEW_POST_FAIL,
+  ALL_POST_FAIL,
+  ALL_POST_REQUEST,
+  ALL_POST_SUCCESS,
 
   CLEAR_ERRORS,
 } from "../constants/userConstants";
@@ -157,7 +161,44 @@ export const updatePassword = (passwords) => async (dispatch) => {
 };
 
 
+// Create Post
+export const createpost = (userData) => async (dispatch) => {
+  try {
+    dispatch({ type: NEW_POST_REQUEST });
+
+    const config = { headers: { "Content-Type": "multipart/form-data" } };
+
+    const { data } = await axios.post(`/me/post`, userData, config);
+
+    dispatch({ type: NEW_POST_SUCCESS, payload: data});
+  } catch (error) {
+    dispatch({
+      type: NEW_POST_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};
+
 // Clearing Errors
 export const clearErrors = () => async (dispatch) => {
   dispatch({ type: CLEAR_ERRORS });
 };
+
+// Get All Posts
+export const getallPost =() => async (dispatch) => {
+    try {
+      dispatch({ type: ALL_POST_REQUEST });
+
+      const { data } = await axios.get("/allposts");
+
+      dispatch({
+        type: ALL_POST_SUCCESS,
+        payload: data,
+      });
+    } catch (error) {
+      dispatch({
+        type: ALL_POST_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };

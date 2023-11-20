@@ -10,9 +10,9 @@ import store from "./store";
 import ForgotPassword from './components/ForgotPassword.js';
 import ResetPassword from './components/ResetPassword.js';
 import Profile from './components/Profile.js';
-import UpdateProfile from "./component/UpdateProfile.js"
-
-
+import UpdateProfile from "./components/UpdateProfile.js"
+import UpdatePassword from "./components/UpdatePassword.js"
+import CreatePost from "./components/CreatePost.js"
 
 
 function App() {
@@ -28,6 +28,8 @@ function App() {
         <Route path="/password/reset/:token" element={<ResetPassword />} />
         <Route path="/account" element={<Profile />}/>
         <Route path="/me/update" element={<UpdateProfile />}/>
+        <Route path="/password/update" element={<UpdatePassword />}/>
+        <Route path="/me/post" element={<CreatePost />}/>
       </Routes>
       <Footer />
     </Router>

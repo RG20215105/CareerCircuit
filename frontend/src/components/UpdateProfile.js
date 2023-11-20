@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { clearErrors, updateProfile } from "../actions/userAction";
 import { UPDATE_PROFILE_RESET } from "../constants/userConstants";
 import { useNavigate } from "react-router-dom";
-
+import google from "../common/img/google.png";
 
 const UpdateProfile = () => {
   const dispatch = useDispatch();
@@ -16,13 +16,11 @@ const UpdateProfile = () => {
   const [email, setEmail] = useState("");
   const [phoneno, setPhone] = useState("");
   const [avatar, setAvatar] = useState();
-  const [avatarPreview, setAvatarPreview] = useState("/Profile.png");
+  const [avatarPreview, setAvatarPreview] = useState(user.avatar);
 
   const updateProfileSubmit = (e) => {
     e.preventDefault();
-
     const myForm = new FormData();
-
     myForm.set("name", name);
     myForm.set("email", email);
     myForm.set("phoneno", phoneno);
@@ -32,14 +30,12 @@ const UpdateProfile = () => {
 
   const updateProfileDataChange = (e) => {
     const reader = new FileReader();
-
     reader.onload = () => {
       if (reader.readyState === 2) {
         setAvatarPreview(reader.result);
         setAvatar(reader.result);
       }
     };
-
     reader.readAsDataURL(e.target.files[0]);
   };
 
@@ -48,6 +44,7 @@ const UpdateProfile = () => {
       setName(user.name);
       setEmail(user.email);
       setPhone(user.phoneno);
+      setAvatar(user.avatar);
       setAvatarPreview(user.avatar.url);
     }
 
@@ -95,7 +92,7 @@ const UpdateProfile = () => {
                   
                   <input
                     type="number"
-                    placeholder="Phonr Number"
+                    placeholder="Phone Number"
                     required
                     name="phoneno"
                     value={phoneno}

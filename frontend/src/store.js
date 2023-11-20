@@ -6,6 +6,8 @@ import {
 forgotPasswordReducer,
   userReducer,
   profileReducer,
+  postReducer,
+  postsReducer,
 } from "./reducers/userReducer";
 
 
@@ -15,7 +17,8 @@ const reducer = combineReducers({
   user:userReducer,
   forgotPassword:forgotPasswordReducer,
   profile:profileReducer,
-  
+  newpost:postReducer,
+  allposts:postsReducer,
 });
 
 let initialState = {

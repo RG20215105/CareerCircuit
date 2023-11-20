@@ -3,9 +3,8 @@ const catchasyncerrors=require("../middleware/catchasyncerrors");
 const User=require("../models/usermodels");
 const sendToken = require("../utils/jwtToken");
 const sendEmail=require("../utils/sendEmail");
-const crypto=require("crypto");
 const cloudinary=require("cloudinary");
-
+const Post=require("../models/postmodel");
 
 //register user
 exports.registerUser=catchasyncerrors(async(req,res,next)=>{
@@ -179,3 +178,41 @@ if(req.body.avatar !== ""){
         success:true,
     });
 });
+
+//create new post
+exports.createpost = catchasyncerrors(async (req, res, next) => {
+    
+    let images = [];
+    if (typeof req.body.images === "string") {
+        images.push(req.body.images);
+    }
+    else {
+        images = req.body.images;
+    }
+    const imageslink = [];
+    for (let i = 0; i < images.length; i++) {
+        const result = await cloudinary.v2.uploader.upload(images[i], { folder: "products" });
+        imageslink.push({
+            public_id: result.public_id,
+            url: result.secure_url,
+        });
+    }
+    req.body.images = imageslink;
+    req.body.user = req.user.id;
+    const post = await Post.create(req.body);
+    res.status(201).json({
+        success: true,
+        post
+    })
+})
+
+//get all posts
+
+exports.getallposts=catchasyncerrors(async(req,res,next)=>{
+    const posts=await Post.find();
+
+    res.status(200).json({
+        success:true,
+        posts,
+    });
+});  

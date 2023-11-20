@@ -21,8 +21,14 @@ import {
   UPDATE_PASSWORD_FAIL,
   UPDATE_PROFILE_RESET,
   UPDATE_PASSWORD_RESET,
+NEW_POST_REQUEST,
+  NEW_POST_SUCCESS,
+NEW_POST_FAIL,
+NEW_POST_RESET,
+ALL_POST_FAIL,
+ALL_POST_REQUEST,
+ALL_POST_SUCCESS,
 
-  
 
   CLEAR_ERRORS,
 } from "../constants/userConstants";
@@ -169,6 +175,75 @@ export const profileReducer = (state = {}, action) => {
         error: null,
       };
 
+    default:
+      return state;
+  }
+};
+
+export const postReducer = (state = { }, action) => {
+  switch (action.type) {
+    
+    case NEW_POST_REQUEST:
+      return {
+        ...state,
+        loading: true,
+      };
+   
+    case NEW_POST_SUCCESS:
+    
+      return {
+        loading: false,
+        success: action.payload.success,
+        product: action.payload.post,
+      };
+    case NEW_POST_FAIL:
+      return {
+        ...state,
+        loading: false,
+        error: action.payload,
+      };
+      case NEW_POST_RESET:
+      return {
+        ...state,
+        success: false,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
+export const postsReducer = (state = { posts: [] }, action) => {
+  switch (action.type) {
+    case ALL_POST_REQUEST:
+    
+      return {
+        loading: true,
+        posts: [],
+      };
+    case ALL_POST_SUCCESS:
+      return {
+        loading: false,
+        posts: action.payload.posts,
+      };
+
+    case ALL_POST_FAIL:
+    
+      return {
+        loading: false,
+        error: action.payload,
+      };
+
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
     default:
       return state;
   }
