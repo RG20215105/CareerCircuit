@@ -80,7 +80,17 @@ const userSchema = new mongoose.Schema({
     description: {
       type: String,
       default: "",
+    }
+    } ,  
+  connections: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User",
     },
+  ],
+  createdAt: {
+    type: Date,
+    default: Date.now(),
   },
   resetPasswordToken: { type: String },
   resetPasswordExpire: { type: Date },
