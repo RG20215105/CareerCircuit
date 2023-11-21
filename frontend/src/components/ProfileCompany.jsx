@@ -3,23 +3,68 @@ import { useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-
-const CompanyProfile = () => {
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer, toast } from "react-toastify";
+const ProfileCompany = () => {
+  const navigater = useNavigate();
   const [company, setCompany] = useState(null);
+  const [isFollowing, setIsFollowing] = useState(false);
   const { state } = useLocation();
   const userID = state.id;
+  const { isAuthenticated, user } = useSelector((store) => store.user);
+
+  const notify = (msg) => {
+    toast(msg);
+  };
+
+  const followHandler = () => {
+    if (isAuthenticated) {
+      if (isFollowing) {
+        //unfollow
+        axios
+          .post("http://localhost:4000/unfollow", {
+            follower: user._id,
+            following: company._id,
+          })
+          .then((res) => {
+            notify("Unfollowed");
+            setIsFollowing(!isFollowing);
+          });
+      } else {
+        //follow
+        axios
+          .post("http://localhost:4000/follow", {
+            follower: user._id,
+            following: company._id,
+          })
+          .then((res) => {
+            notify("Following");
+            setIsFollowing(!isFollowing);
+          });
+      }
+    } else {
+      navigater("/login");
+    }
+  };
 
   useEffect(() => {
     axios
       .post("http://localhost:4000/company/details", { id: userID })
       .then((res) => {
-          setCompany(res.data);
-          console.log(res.data);
+        setCompany(res.data);
+        if (isAuthenticated) {
+          const result = res.data.follwers.find(  (id) => {
+            return id === user._id;
+          });
+          if (result) {
+            setIsFollowing(true);
+          }
+        }
       })
-      .catch(function (err) {
+      .catch((err) => {
         console.log(err);
       });
-  },[]);
+  }, []);
   return (
     <>
       {company ? (
@@ -41,8 +86,11 @@ const CompanyProfile = () => {
                       {company.name}
                     </h2>
                     <div class="w-12 h-1 bg-pink-500 rounded mt-2 mb-4"></div>
-                    <button class="inline-flex text-white bg-purple-500 border-0 py-1 px-4 focus:outline-none hover:bg-purple-600 rounded">
-                      Follow
+                    <button
+                      onClick={followHandler}
+                      class="inline-flex text-white bg-purple-500 border-0 py-1 px-4 focus:outline-none hover:bg-purple-600 rounded"
+                    >
+                      {isFollowing ? "Following" : "Follow"}
                     </button>
                   </div>
                   <p className="mt-1">Followers : {company.followers.length}</p>
@@ -71,17 +119,35 @@ const CompanyProfile = () => {
                 </div>
               </div>
             </div>
-            <p class="sm:text-3xl text-2xl font-medium title-font mb-4 text-yellow-500">Products :</p>
-            {company.products.map( (item)=> {
-                return (
-                    <p key={item._id}>{item._id}</p>
-                )
+            <p class="sm:text-3xl text-2xl font-medium title-font mb-4 text-yellow-500">
+              Products :
+            </p>
+            {company.products.map((item) => {
+              return (
+                <>
+                  <div className="flex flex-row gap-5 border-solid border-2 border-purple-500 p-2 m-2 rounded-lg" key={item._id}>
+                    <img src={item.image.url} className="w-8"/>
+                    <p>{item.name}</p>
+                    <p>{item.description}</p>
+                    <p>{item.price}</p>
+                  </div>
+                </>
+                  )
             })}
-            <p class="sm:text-3xl text-2xl font-medium title-font mb-4 text-yellow-500">Jobs :</p>
-            {company.jobs.map( (item)=> {
-                return (
-                    <p key={item._id}>{item._id}</p>
-                )
+            <p class="sm:text-3xl text-2xl font-medium title-font mb-4 text-yellow-500">
+              Jobs :
+            </p>
+            {company.jobs.map((item) => {
+              return (
+                <>
+                  <div className="flex flex-row gap-5 border-solid border-2 border-purple-500 p-2 m-2 rounded-lg" key={item._id}>
+                    <p>{item.profileName}</p>
+                    <p>{item.description}</p>
+                    <p>{item.salary}</p>
+                    <p>{item.location}</p>
+                  </div>
+                </>
+                  )
             })}
           </div>
         </section>
@@ -90,8 +156,10 @@ const CompanyProfile = () => {
           Fetching data...please hang on..!
         </p>
       )}
+
+      <ToastContainer autoClose={2000} theme="dark" />
     </>
   );
 };
 
-export default CompanyProfile;
+export default ProfileCompany;

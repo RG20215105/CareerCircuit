@@ -153,6 +153,7 @@ exports.getCompanyProfile = async(req,res)=>{
 }
 
 exports.getCompanyDetails = async(req,res)=>{
-    const details = await User.findById(req.body.id).populate("jobs");
+    const details = await User.findById(req.body.id).populate('jobs').populate('products');
+    console.log(details);
     res.send(details);
 }

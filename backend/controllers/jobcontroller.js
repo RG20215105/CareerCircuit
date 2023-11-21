@@ -17,7 +17,7 @@ exports.postJob = async(req,res) =>{
         expire :jobDetails.expire,
         applications:jobDetails.applications
     });
-    const user = await User.findById(companyID);
+    const user = await User.findById(jobDetails.companyID);
     user.jobs.push(job._id);
     user.save();
     res.status(200).json({
