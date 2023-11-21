@@ -287,3 +287,25 @@ exports.createlike=catchasyncerrors(async(req,res,next)=>{
         post,
     });
 });  
+
+
+//get user details
+
+exports.getuserdetails=catchasyncerrors(async(req,res,next)=>{
+    const user=await User.findById(req.user.id);
+
+    res.status(200).json({
+        success:true,
+        user,
+    });
+});
+
+//get specific user details
+exports.getalluserdetails=catchasyncerrors(async(req,res,next)=>{
+    const user=await User.find();
+
+    res.status(200).json({
+        success:true,
+        user,
+    });
+});

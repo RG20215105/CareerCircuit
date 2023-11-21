@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userAction";
 
 import { useNavigate} from 'react-router-dom';
-import google from "../common/img/google.png";
+import profile from "../common/img/profile.png";
 
 
 
@@ -20,7 +20,7 @@ const Signin = () => {
         phoneno:"",
       });
       const [avatar, setAvatar] = useState();
-      const [avatarPreview, setAvatarPreview] = useState(google);
+      const [avatarPreview, setAvatarPreview] = useState(profile);
       const { name, email, password,phoneno } = user;
 
 
@@ -56,8 +56,7 @@ const Signin = () => {
     
       useEffect(() => {
         if (isAuthenticated) {
-         
-          navigate("/");
+          navigate("/feed");
         }
       
       }, [dispatch,isAuthenticated]);

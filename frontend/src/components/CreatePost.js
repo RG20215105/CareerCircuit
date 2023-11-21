@@ -50,7 +50,7 @@ const CreatePost = () => {
     
     if (success) {
       
-      navigate("/");
+      navigate("/account");
       dispatch({ type: NEW_POST_RESET });
     }
   }, [dispatch, success]);

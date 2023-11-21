@@ -9,6 +9,7 @@ forgotPasswordReducer,
   postReducer,
   postsReducer,
   postDetailsReducer,
+  usersReducer,
  
 } from "./reducers/userReducer";
 
@@ -21,7 +22,8 @@ const reducer = combineReducers({
   profile:profileReducer,
   newpost:postReducer,
   allposts:postsReducer,
-  post:postDetailsReducer
+  post:postDetailsReducer,
+  allusers:usersReducer,
 });
 
 let initialState = {

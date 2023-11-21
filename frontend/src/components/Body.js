@@ -1,7 +1,7 @@
 import React, {  useEffect,useState } from "react";
 import { Link } from "react-router-dom";
 import {useNavigate} from "react-router-dom";
-import { clearErrors, getallPost,Comment,Like } from "../actions/userAction";
+import { clearErrors, getallPost,getallUser,Comment,Like } from "../actions/userAction";
 import { useSelector, useDispatch } from "react-redux";
 
 const Body=()=>{
@@ -9,6 +9,7 @@ const Body=()=>{
     const dispatch = useDispatch();
     const {isAuthenticated} =useSelector((state)=> state.user);
   const { loading, error, posts} = useSelector((state) => state.allposts);
+  const { users} = useSelector((state) => state.allusers);
   const [com, setComment] = useState("");
   const [postid, setpostid] = useState();
   const [like, setLike] = useState("");
@@ -60,15 +61,21 @@ const copytext=()=>{
     if (error) {
       dispatch(clearErrors());
     }
+    dispatch(getallUser());
     dispatch(getallPost());
   }, [dispatch, error]);
 
     return (
-        <>
-            <img src={require('../common/img/signin.jpg')}/>
-            {posts &&
-              posts.map((post) => (
+        <>{users && users.map((user)=>(
+          <div>
+          {posts && posts.map((post) => (
                 <>
+                {user._id===post.user &&
+                  <>
+                  <img src={user.avatar.url} />
+                  <p>{user.name}</p>
+                  <p>{post.comment}</p>
+                
                 {post.images && post.images.map((image)=>(
                     <img src={image.url} />
                 ))}
@@ -81,7 +88,9 @@ const copytext=()=>{
                         setpostid(`${post._id}`);
                       } }
                     />
-                     <select onChange={(e) => {
+                    
+                  <button onClick={postComment} >Comment</button>
+                  <select onChange={(e) => {
                      setLike(e.target.value);
                      setpostid(`${post._id}`);
                      postlike();
@@ -93,17 +102,23 @@ const copytext=()=>{
                   </option>
                 ))}
               </select>
-                  <button onClick={postComment} >Comment</button>
                   <button onClick={()=>{
                        setpostid(`${post._id}`);
                       copytext() ;
                   }} >Share</button>
 
+                
 
-                <p>{post.comment}
-                {post._id}</p>
+</>
+                }
+                
+                
                 </>
               ))}
+          </div>
+        ))}
+            
+              
             
         </>
        

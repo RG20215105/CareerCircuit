@@ -34,6 +34,12 @@ import {
   NEW_LIKE_REQUEST,
   NEW_LIKE_SUCCESS,
   NEW_LIKE_FAIL,
+  LOAD_USER_FAIL,
+  LOAD_USER_REQUEST,
+  LOAD_USER_SUCCESS,
+  ALL_USER_FAIL,
+  ALL_USER_REQUEST,
+  ALL_USER_SUCCESS,
 
   CLEAR_ERRORS,
 } from "../constants/userConstants";
@@ -77,6 +83,20 @@ export const login = (email, password) => async (dispatch) => {
   }
 };
 
+// Load User
+export const loadUser = () => async (dispatch) => {
+  try {
+    dispatch({ type: LOAD_USER_REQUEST });
+
+    const { data } = await axios.get(`/me`);
+
+    dispatch({ type: LOAD_USER_SUCCESS, payload: data.user });
+  } catch (error) {
+    dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
+  }
+};
+
+//logout
 export const logout = () => async (dispatch) => {
   try {
     await axios.get(`/logout`);
@@ -267,3 +287,22 @@ export const getallPost =() => async (dispatch) => {
       });
     }
   };
+
+  // Get All users
+export const getallUser =() => async (dispatch) => {
+  try {
+    dispatch({ type: ALL_USER_REQUEST });
+
+    const { data } = await axios.get("/allusers");
+
+    dispatch({
+      type: ALL_USER_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    dispatch({
+      type: ALL_USER_FAIL,
+      payload: error.response.data.message,
+    });
+  }
+};

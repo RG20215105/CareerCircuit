@@ -1,6 +1,25 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import {logout} from "../actions/userAction";
+import { useEffect } from "react";
 
 const Header = () => {
+  const dispatch=useDispatch();
+  let navigate=useNavigate();
+  const {  isAuthenticated } = useSelector(
+    (state) => state.user
+  );
+  const log=()=>{
+    dispatch(logout());
+    navigate("/");
+  }
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate("/");
+    }
+  
+  }, [isAuthenticated]);
+
   return (
     <header className="text-gray-400 bg-gray-900 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center font-semibold">
@@ -16,14 +35,18 @@ const Header = () => {
           <span className="ml-3 text-xl xl:block lg:hidden">CareerCircuit</span>
         </a>
         <div className="lg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0 gap-1">
-          <button className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-  hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
-            <Link to ='/signin'>
-             Sign in</Link>          
-          </button>
-          <button className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+
+         {isAuthenticated && <button onClick={log} className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-  hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+            Logout
+          </button>}
+          {!isAuthenticated && <button className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
           <Link to ='/login'>
             Login</Link>          
-          </button>
+          </button>}
+          {isAuthenticated && <button className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+          <Link to ='/account'>
+            Profile</Link>          
+          </button>}
         </div>
       </div>
       {/* <hr className="border-gray-400 "></hr> */}

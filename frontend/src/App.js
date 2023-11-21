@@ -1,5 +1,6 @@
 import './App.css';
-import React from "react";
+import React,{ useEffect } from "react";
+
 import Body from "./components/Body";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
@@ -14,15 +15,22 @@ import UpdateProfile from "./components/UpdateProfile.js"
 import UpdatePassword from "./components/UpdatePassword.js"
 import CreatePost from "./components/CreatePost.js"
 import DisplayPost from "./components/DisplayPost.js"
+import { loadUser } from './actions/userAction.js';
+import { useDispatch } from 'react-redux';
+
 
 function App() {
+  let dispatch=useDispatch();
+  useEffect(() => {
+    dispatch(loadUser());    
+  },[dispatch])
 
   return (
     <Router>
       <Header />
       <Routes>
-        <Route path="/" element={<Body />} />
-        <Route path="/signin" element={<Signin />} />
+        <Route path="/" element={<Signin />} />
+        <Route path="/feed" element={<Body />} />
         <Route path="/login" element={<Login />} />
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword />} />

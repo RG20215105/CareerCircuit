@@ -22,8 +22,7 @@ let navigate=useNavigate();
 
   useEffect(() => {
     if (isAuthenticated) {
-     
-      navigate("/account");
+      navigate("/feed");
     }
   
   }, [dispatch,isAuthenticated]);
