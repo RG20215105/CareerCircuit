@@ -15,8 +15,18 @@ const UpdateProfile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneno, setPhone] = useState("");
-  const [avatar, setAvatar] = useState();
+  const [avatar, setAvatar] = useState("");
   const [avatarPreview, setAvatarPreview] = useState(user.avatar);
+  const [description, setDescription] = useState("");
+  const [skills, setskills] = useState([]);
+  const [company, setCompany] = useState("");
+  const [role, setRole] = useState("");
+  const [college, setCollege] = useState("");
+  const [course, setCourse] = useState("");
+  const [skill, setSkill] = useState("");
+  const [years, setYears] = useState("");
+  const [grade, setGrade] = useState("");
+
 
   const updateProfileSubmit = (e) => {
     e.preventDefault();
@@ -25,8 +35,21 @@ const UpdateProfile = () => {
     myForm.set("email", email);
     myForm.set("phoneno", phoneno);
     myForm.set("avatar", avatar);
+    myForm.set("company",company);
+    myForm.set("role",role);
+    myForm.set("college",college);
+    myForm.set("course",course);
+    myForm.set("description", description);
+    myForm.set("skills", skills);
+    myForm.set("years", years);
+    myForm.set("grade", grade);
     dispatch(updateProfile(myForm));
   };
+
+  const addSkill=(e)=>{
+  e.preventDefault();
+    setskills(current => [...current,skill]);
+  }
 
   const updateProfileDataChange = (e) => {
     const reader = new FileReader();
@@ -109,6 +132,75 @@ const UpdateProfile = () => {
                     onChange={updateProfileDataChange}
                   />
                 </div>
+                <div >
+                  <h1>Experience</h1>
+                  <input
+                    type="text"
+                    placeholder="Company"
+                    name="comapny"
+                    value={company}
+                    onChange={(e) => setCompany(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Role"
+                    name="role"
+                    value={role}
+                    onChange={(e) => setRole(e.target.value)}
+                  />
+                   <input
+                    type="text"
+                    placeholder="Years"
+                    name="years"
+                    value={years}
+                    onChange={(e) => setYears(e.target.value)}
+                  />
+                </div>
+                <div >
+                  <h1>Education</h1>
+                  <input
+                    type="text"
+                    placeholder="College"
+                    name="college"
+                    value={college}
+                    onChange={(e) => setCollege(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Course"
+                    name="course"
+                    value={course}
+                    onChange={(e) => setCourse(e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    placeholder="Grade"
+                    name="grade"
+                    value={grade}
+                    onChange={(e) => setGrade(e.target.value)}
+                  />
+                </div>
+                <div >
+                  <h1>Description</h1>
+                  <input
+                    type="text"
+                    placeholder="description"
+                    name="description"
+                    value={description}
+                    onChange={(e) => setDescription(e.target.value)}
+                  />
+                  </div>
+                  <div >
+                  <h1>Skills</h1>
+                  <input
+                    type="text"
+                    placeholder="skill"
+                    name="skill"
+                    value={skill}
+                    onChange={(e) => setSkill(e.target.value)}
+                  />
+                  <button onClick={addSkill}>Add Skill</button>
+                  </div>
                 <input
                   type="submit"
                   value="Update"

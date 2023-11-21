@@ -13,9 +13,10 @@ exports.registerUser=catchasyncerrors(async(req,res,next)=>{
     width:150,
     crop:"scale",
    })
+   const description="";
     const {name,email,password,phoneno}=req.body;
     const user=await User.create({
-        name,email,password,phoneno,avatar:{
+        name,email,password,phoneno,description,avatar:{
             public_id:myCloud.public_id,
             url:myCloud.secure_url,
         },
@@ -148,12 +149,32 @@ exports.updatepass=catchasyncerrors(async(req,res,next)=>{
 //update user profile
 
 exports.updateprofile=catchasyncerrors(async(req,res,next)=>{
+  let users=await User.findById(req.user.id);
+  console.log(req.body);
     const newUserdata={
         name:req.body.name,
         email:req.body.email,
         phoneno:req.body.phoneno,
+        description:req.body.description
     }
-
+    const  ex={
+        company:req.body.company,
+        role:req.body.role,
+        years:req.body.years
+    };
+    const ed={
+        college:req.body.college,
+        course:req.body.course,
+        grade:req.body.grade
+    };
+   users.experience.push(ex);
+   users.education.push(ed);
+   const s=req.body.skills.split(',');
+   console.log(typeof(s));
+   for(var i=0; i< s.length; i++){  
+    users.skills.push(s[i]);  
+    }  
+   await users.save();
 if(req.body.avatar !== ""){
     const user=await User.findById(req.user.id);
     const imageId=user.avatar.public_id;

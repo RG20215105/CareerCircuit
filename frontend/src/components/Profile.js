@@ -2,12 +2,23 @@ import React, {  useEffect } from "react";
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import {useNavigate} from "react-router-dom";
-
-
+import html2canvas from 'html2canvas';
+import jspdf from 'jspdf';
 const Profile = () => {
     let navigate = useNavigate();
     const { user, loading, isAuthenticated } = useSelector((state) => state.user);
     
+    const downloadpdf=()=>{
+      const capture=document.querySelector('.resume');
+      html2canvas(capture).then((canvas)=>{
+        const imgdata=canvas.toDataURL('img/png');
+        const doc=new jspdf('p','mm','a4');
+        const componentWidth=doc.internal.pageSize.getWidth();
+        const componentHeight=doc.internal.pageSize.getHeight();
+        doc.addImage(imgdata,'PNG', 20, 0,componentWidth, componentHeight);
+        doc.save('resume.pdf');
+      })
+    }
   
     useEffect(() => {
     
@@ -16,7 +27,7 @@ const Profile = () => {
       }
     }, [isAuthenticated]);
     return (
-            <div>
+            <div className="resume">
               <div>
                 <h1>My Profile</h1>
                 <img src={user.avatar.url} alt={user.name} />
@@ -45,7 +56,11 @@ const Profile = () => {
                   <Link to="/password/update">Change Password</Link>
                 </div>
               </div>
+              <div>
+              <button onClick={downloadpdf}>Download Resume</button>
             </div>
+            </div>
+            
     );
   };
   

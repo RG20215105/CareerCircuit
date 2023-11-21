@@ -35,7 +35,28 @@ const userSchema = new mongoose.Schema({
             default:"my"
         }
     },
-  
+  experience:[{
+    company:{
+        type:String,
+    },
+    role:{
+        type:String,
+    },
+    years:{
+        type:Number
+    },
+  }],
+  skills:[{type:String}],
+  education:[
+    {
+        college:{type:String},
+        course:{type:String},
+        grade:{type:Number},
+    }
+  ],
+  description:{
+    type:String
+  },
     createdAt:{
         type:Date,
         default:Date.now(),
