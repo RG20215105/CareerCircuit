@@ -18,6 +18,7 @@ import MyProducts from "./components/MyProducts.jsx";
 import Applicants from './components/Applicants.jsx';
 import ExploreCompany from './components/ExploreCompany.jsx';
 import ProfileUpdateCompany from './components/ProfileUpdateCompany.jsx';
+import CompanyProfile from './components/companyProfile.jsx';
 
 function App() {
 
@@ -40,7 +41,7 @@ function App() {
         <Route path="/company/applicants" element={ <Applicants/>}></Route>
         <Route path="/company/explore" element={ <ExploreCompany/>}></Route>
         <Route path="/company/profileupdate" element={ <ProfileUpdateCompany/>}></Route>
-
+        <Route path='company/profile' element={<CompanyProfile/>} ></Route>
 
       </Routes>
       <Footer />
