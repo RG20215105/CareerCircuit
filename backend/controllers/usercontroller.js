@@ -118,3 +118,36 @@ sendToken(user,200,res);
 
 })
 
+
+
+exports.getAllCompany = async(req,res) => {
+    try {
+        const data = await User.find({isCompany : true});
+        res.send(data);
+    } catch (error) {
+        console.log(err);
+    }
+}
+exports.profileUpdateCompany = async(req,res)=>{
+    try {
+        const {userID,industry , address, website,description} = req.body;
+        const user = await User.findById(userID);
+        user.companyProfile = {
+            industry : industry,
+            address : address,
+            website : website,
+            description : description
+        }
+        user.save();
+        res.status(201).json({
+            msg :  " Updated"
+        })
+    } catch (error) {
+        console.log(error);
+    }
+}
+exports.getCompanyProfile = async(req,res)=>{
+    const profileData = await User.findById(req.body.userID);
+    // console.log(profileData.companyProfile);
+    res.send(profileData.companyProfile);
+}

@@ -9,7 +9,7 @@ const Company = () => {
           <span className="text-yellow-500">Welcome companies to </span>CareerCircuit !
         </h2>
         <div class="md:w-3/5 md:pl-6">
-          <p class="leading-relaxed text-base">
+          <p className="leading-relaxed text-xl">
             With CareerCircuit company section, your hectic task of recuirting new workforce for your company is now 
             going to become very easy.
             <hr className="my-4"></hr>
@@ -26,7 +26,7 @@ const Company = () => {
               Register Company
             </button></Link>
             <Link to="/company/login" className="mx-4 font-semibold  text-yellow-500 underline hover:text-yellow-700">Login</Link>
-            <Link to="/companypage" className="mx-4 font-semibold  text-purple-500 underline hover:text-purple-700">Explore Companies</Link>
+            <Link to="/company/explore" className="mx-4 font-semibold  text-purple-500 underline hover:text-purple-700">Explore Companies</Link>
             </div>
         </div>
       </div>

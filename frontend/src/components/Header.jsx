@@ -20,11 +20,12 @@ const Header = () => {
     <header className="text-gray-400 bg-gray-900 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center font-semibold">
         <nav className="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
-          <NavLink to="/" className="mr-5 hover:text-purple-500 active:text-white"> Home</NavLink>
-          <NavLink to="/network" className="mr-5 hover:text-purple-500">My Network</NavLink>
-          <NavLink to="/chats" className="mr-5 hover:text-purple-500">Messages</NavLink>
-          <NavLink to="/notifications" className="mr-5 hover:text-purple-500">Notifications</NavLink>
-          <NavLink to="/jobs" className="hover:text-yellow-500 ">Jobs</NavLink>
+          <NavLink to="/" className="mr-3 hover:text-purple-500 active:text-white"> Home</NavLink>
+          <NavLink to="/network" className="mr-3 hover:text-purple-500">My Network</NavLink>
+          <NavLink to="/chats" className="mr-3 hover:text-purple-500">Messages</NavLink>
+          <NavLink to="/notifications" className="mr-3 hover:text-purple-500">Notifications</NavLink>
+          <NavLink to="/jobs" className="mr-3 hover:text-yellow-500 ">Jobs</NavLink>
+          <NavLink to="/company/explore" className="hover:text-yellow-500 ">Companies</NavLink>
         </nav>
         
         <a className="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-white lg:items-center lg:justify-center mb-4 md:mb-0">
@@ -42,16 +43,16 @@ const Header = () => {
               </button>
             </>
           :
-            <>
+            <><Link to="/company">
               <button className="inline-flex items-center bg-yellow-500 border-0 py-1 px-3 text-white font-semibold focus:outline-  hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
-                <Link to="/company">Company</Link>
-              </button>
-              <button className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-  hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
-                <Link to="/signin">Sign in</Link>
-              </button>
-              <button className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
-                <Link to="/login">Login</Link>
-              </button>
+                Company
+              </button></Link>
+              <Link to="/signin"><button className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-  hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+                Sign in
+              </button></Link>
+              <Link to="/login"><button className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
+                Login
+              </button></Link>
             </>
           }
         </div>

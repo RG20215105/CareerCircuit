@@ -55,6 +55,28 @@ const userSchema = new mongoose.Schema({
             ref : 'Job',
         }
     ],
+    //company the user is following
+    following : [
+        { type : mongoose.Schema.Types.ObjectId }
+    ],
+    companyProfile : {
+        industry : {
+            type : String,
+            default : ""
+        },
+        address : {
+            type : String,
+            default : ""
+        },
+        website : {
+            type : String,
+            default : ""
+        },
+        description : { 
+            type : String,
+            default : ""
+        }
+    },
     resetPasswordToken:{type:String},
     resetPasswordExpire:{type:Date}
 });
