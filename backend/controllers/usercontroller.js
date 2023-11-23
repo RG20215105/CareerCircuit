@@ -1,6 +1,6 @@
 const ErrorHandler = require("../utils/errorhandler");
 const catchasyncerrors = require("../middleware/catchasyncerrors");
-const User = require("../models/userModels");
+const User = require("../models/usermodels");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const crypto = require("crypto");

@@ -1,6 +1,4 @@
 const express = require("express");
-const { registerUser,loginUser,logout, forgotpassword,resetPasswords,getAllCompany, profileUpdateCompany, getCompanyProfile} = require("../controllers/usercontroller");
-const {getCompanyDetails} = require('../controllers/usercontroller');
 const {
   registerUser,
   loginUser,
@@ -8,6 +6,10 @@ const {
   forgotpassword,
   resetPasswords,
   allConnections,
+  getAllCompany,
+  profileUpdateCompany,
+  getCompanyProfile,
+  getCompanyDetails
 } = require("../controllers/usercontroller");
 const { protect } = require("../middleware/authMiddleware");
 

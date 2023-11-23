@@ -55,9 +55,7 @@ const userSchema = new mongoose.Schema({
       ref: "Job",
     },
   ],
-  //company the user is following
   following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
-  //if it is a company then for pushing notifications
   followers: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -80,8 +78,8 @@ const userSchema = new mongoose.Schema({
     description: {
       type: String,
       default: "",
-    }
-    } ,  
+    },
+  },
   connections: [
     {
       type: mongoose.Schema.Types.ObjectId,
@@ -127,4 +125,7 @@ userSchema.methods.getResetPasswordToken = function () {
   return resettoken;
 };
 
-module.exports = mongoose.model("User", userSchema);
+// module.exports = mongoose.model("User", userSchema);
+
+module.exports = mongoose.models.User || mongoose.model('User',userSchema);
+// export default User;
