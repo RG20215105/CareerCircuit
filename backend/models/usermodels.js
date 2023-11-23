@@ -54,12 +54,40 @@ const userSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "Job",
     },
+<<<<<<< HEAD
   ],
   following: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   followers: [
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+=======
+  experience:[{
+    company:{
+        type:String,
+    },
+    role:{
+        type:String,
+    },
+    years:{
+        type:Number
+    },
+  }],
+  skills:[{type:String}],
+  education:[
+    {
+        college:{type:String},
+        course:{type:String},
+        grade:{type:Number},
+    }
+  ],
+  description:{
+    type:String
+  },
+    createdAt:{
+        type:Date,
+        default:Date.now(),
+>>>>>>> back1
     },
   ],
   companyProfile: {

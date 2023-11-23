@@ -3,8 +3,14 @@ import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 
 import {
-
+forgotPasswordReducer,
   userReducer,
+  profileReducer,
+  postReducer,
+  postsReducer,
+  postDetailsReducer,
+  usersReducer,
+ 
 } from "./reducers/userReducer";
 
 
@@ -12,8 +18,12 @@ import {
 const reducer = combineReducers({
   
   user:userReducer,
- 
-  
+  forgotPassword:forgotPasswordReducer,
+  profile:profileReducer,
+  newpost:postReducer,
+  allposts:postsReducer,
+  post:postDetailsReducer,
+  allusers:usersReducer,
 });
 
 let initialState = {
