@@ -114,12 +114,12 @@ const Profile = () => {
                         Applied Jobs
                       </button>
                     </Link>
-                    <Link to="">
+                    <Link to="/me/post">
                       <button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                         Create a new Post
                       </button>
                     </Link>
-                    <Link to="/resume/donload">
+                    <Link to="/resume/download">
                       <button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                         Resume Download
                       </button>

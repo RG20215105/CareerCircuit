@@ -37,9 +37,9 @@ exports.registerUser=catchasyncerrors(async(req,res,next)=>{
     crop:"scale",
    })
     const description="";
-    const {name,email,password,phoneno}=req.body;
+    const {name,email,password,phoneno,isCompany}=req.body;
     const user=await User.create({
-        name,email,password,phoneno,description,avatar:{
+        name,email,password,phoneno,description,isCompany,avatar:{
             public_id:myCloud.public_id,
             url:myCloud.secure_url,
         },
