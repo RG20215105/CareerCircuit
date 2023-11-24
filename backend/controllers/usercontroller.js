@@ -27,8 +27,6 @@ exports.allConnections = catchasyncerrors(async (req, res, next) => {
     return next(new ErrorHandler(err.message, 400));
   }
 });
-const sendEmail=require("../utils/sendEmail");
-const cloudinary=require("cloudinary");
 const Post=require("../models/postmodel");
 
 //register user

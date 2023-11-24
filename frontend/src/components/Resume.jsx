@@ -7,7 +7,7 @@ import jspdf from 'jspdf';
 import { loadUser } from "../actions/userAction";
 
 
-const Profile = () => {
+const Resume = () => {
   const dispatch=useDispatch();
     let navigate = useNavigate();
     const { user, loading, isAuthenticated } = useSelector((state) => state.user);
@@ -112,5 +112,5 @@ const Profile = () => {
     );
   };
   
-  export default Profile;
+  export default Resume;
   

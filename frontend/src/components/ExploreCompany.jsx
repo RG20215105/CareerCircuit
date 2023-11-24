@@ -16,10 +16,15 @@ const ExploreCompany=()=> {
     }
 
     useEffect( ()=>{
-        axios.get("http://localhost:4000/allcompanies")
-        .then( (res)=>{
+        if(!isAuthenticated){
+          naviagte('/login');
+        }else{
+
+          axios.get("http://localhost:4000/allcompanies")
+          .then( (res)=>{
             setList(res.data);
-        }).catch((err)=>{console.log(err)});
+          }).catch((err)=>{console.log(err)});
+        }
     },[isAuthenticated])
 
   return (

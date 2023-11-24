@@ -2,7 +2,7 @@ import './App.css';
 import React,{ useEffect } from "react";
 
 import Body from "./components/Body";
-import Header from "./components/Header";
+import Header from "./components/Header.jsx";
 import Footer from "./components/Footer";
 import Signin from "./components/Signin.js";
 import Login from "./components/Login.js";
@@ -10,7 +10,6 @@ import { BrowserRouter as Router, Route,Routes } from "react-router-dom";
 import Company from "./components/Company.jsx"
 import CompanyLogin from "./components/CompanyLogin.jsx"
 import CompanySignin from "./components/CompanySignin.jsx"
-import Profile from './components/Profile.jsx';
 import PostJob from './components/PostJob.jsx';
 import Jobs from './components/Jobs.jsx';
 import PostProduct from './components/PostProduct.jsx';
@@ -23,11 +22,14 @@ import ProfileCompany from "./components/ProfileCompany.jsx"
 import store from "./store";
 import ForgotPassword from './components/ForgotPassword.js';
 import ResetPassword from './components/ResetPassword.js';
-import Profile from './components/Profile.js';
+import Profile from './components/Profile.jsx';
 import UpdateProfile from "./components/UpdateProfile.js"
 import UpdatePassword from "./components/UpdatePassword.js"
 import CreatePost from "./components/CreatePost.js"
 import DisplayPost from "./components/DisplayPost.js"
+import Resume from './components/Resume.jsx'
+
+
 import { loadUser } from './actions/userAction.js';
 import { useDispatch } from 'react-redux';
 
@@ -43,6 +45,7 @@ function App() {
       <Header />
       <Routes>
         <Route path="/" element={<Signin />} />
+        <Route path="/signin" element={<Signin />} />
         <Route path="/feed" element={<Body />} />
         <Route path="/login" element={<Login />} />
         <Route path="/company" element={<Company />} />
@@ -58,7 +61,6 @@ function App() {
         <Route path="/company/explore" element={ <ExploreCompany/>}></Route>
         <Route path="/company/profileupdate" element={ <ProfileUpdateCompany/>}></Route>
         <Route path='company/profile' element={<ProfileCompany/>} ></Route>
-
         <Route path="/password/forgot" element={<ForgotPassword />} />
         <Route path="/password/reset/:token" element={<ResetPassword />} />
         <Route path="/account" element={<Profile />}/>
@@ -66,6 +68,7 @@ function App() {
         <Route path="/password/update" element={<UpdatePassword />}/>
         <Route path="/me/post" element={<CreatePost />}/>
         <Route path="/post/:id" element={<DisplayPost />}/>
+        <Route path="resume/download" element={<Resume/>}/>
       </Routes>
       <Footer />
     </Router>

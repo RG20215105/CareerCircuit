@@ -11,10 +11,10 @@ const Jobs = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const {isAuthenticated , user} = useSelector  (
-      (state)=> state.user
+      (store)=> store.user
   )
   
-  const [appliedList ,setAppliedList] = useState(user.appliedJobs);
+  const [appliedList ,setAppliedList] = useState();
   
   
   const notify = () => {
@@ -27,14 +27,20 @@ const Jobs = () => {
   }
 
   useEffect(() => {
+    if(!isAuthenticated){
+      navigate('/login');
+    }else{
+    setAppliedList(user.appliedJobs)
     axios
       .get("http://localhost:4000/getjobs")
       .then(function (res) {
+        console.log(res.data);
         setData(res.data);
       })
       .catch(function (error) {
         console.log(error);
       });
+    } 
   }, []);
 
 

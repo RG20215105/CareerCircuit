@@ -3,11 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { register } from "../actions/userAction";
 
 import { useNavigate} from 'react-router-dom';
-<<<<<<< HEAD
 import sample from "../common/img/sample.png";
-=======
 import profile from "../common/img/profile.png";
->>>>>>> back1
 
 
 
@@ -24,15 +21,9 @@ const Signin = () => {
         phoneno:"",
         isCompany : false,
       });
-<<<<<<< HEAD
-      const [avatar, setAvatar] = useState(sample);
-      const [avatarPreview, setAvatarPreview] = useState(sample);
-      const { name, email, password,phoneno , isCompany} = user;
-=======
       const [avatar, setAvatar] = useState();
       const [avatarPreview, setAvatarPreview] = useState(profile);
       const { name, email, password,phoneno } = user;
->>>>>>> back1
 
 
       const registerSubmit = (e) => {
@@ -45,7 +36,7 @@ const Signin = () => {
         myForm.set("password", password);
         myForm.set("phoneno", phoneno);
         myForm.set("avatar", avatar);
-        myForm.set("isCompany", isCompany);
+        myForm.set("isCompany", user.isCompany);
         dispatch(register(myForm));
       };
       

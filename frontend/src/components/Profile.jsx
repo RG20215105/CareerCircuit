@@ -38,13 +38,11 @@ const Profile = () => {
               </div>
             </div>
             <div class="font-semibold sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-800 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
-              <p class="leading-relaxed text-lg mb-4">Name - {user.name}</p>
-              <p class="leading-relaxed text-lg mb-4">Email - {user.email}</p>
+              <p class="leading-relaxed text-lg mb-4"><span className="font-semibold">Name : </span>{user.name}</p>
+              <p class="leading-relaxed text-lg mb-4"><span className="font-semibold">Email : </span>{user.email}</p>
+              <p class="leading-relaxed text-lg mb-4"><span className="font-semibold">Joined On : </span>{user.createdAt.split('T')[0]}</p>
               <p class="leading-relaxed text-lg mb-4">
-                Phone No. - {user.phoneno}
-              </p>
-              <p class="leading-relaxed text-lg mb-4">
-                Created At - {user.createdAt.split("T")[0]}
+              <span className="font-semibold">Phone No. :</span> {user.phoneno}
               </p>
 
               {user.isCompany ? (
@@ -79,8 +77,29 @@ const Profile = () => {
                 </>
               ) : (
                 <>
+                  <p class="leading-relaxed text-lg mb-4"><span className="font-semibold">Description : </span> {user.description}</p>
+                  <p class="leading-relaxed text-lg mb-4"><span className="font-semibold">Experience : </span> 
+                    <br/>
+                    {user.experience && user.experience.map( (ex)=>(
+                      <div>
+                        <p class="leading-relaxed text-lg mb-4"><span className="font-semibold">Company : </span> {ex.company}</p> 
+                        <p class="leading-relaxed text-lg mb-4"><span className="font-semibold">Role : </span> {ex.role}</p> 
+                        <p class="leading-relaxed text-lg mb-4"><span className="font-semibold">Years : </span> {ex.years}</p> 
+                      </div>
+                    ))}
+                  </p>
+                  <p class="leading-relaxed text-lg mb-4"><span className="font-semibold">Skills : </span> 
+                    <br/>
+                    {user.skills && user.skills.map( (ex)=>(
+                      <div>
+                        <p class="leading-relaxed text-lg mb-4"> {ex}</p> 
+                      </div>
+                    ))}
+                  </p>
+
+
                   <div className="flex flex-col gap-2">
-                    <Link to="">
+                    <Link to="/me/update">
                       <button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                         Update Profile
                       </button>
@@ -98,6 +117,11 @@ const Profile = () => {
                     <Link to="">
                       <button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
                         Create a new Post
+                      </button>
+                    </Link>
+                    <Link to="/resume/donload">
+                      <button class="text-white w-4/5 bg-pink-500 border-0 py-1 px-8 focus:outline-none hover:bg-pink-600 rounded text-lg">
+                        Resume Download
                       </button>
                     </Link>
                   </div>
