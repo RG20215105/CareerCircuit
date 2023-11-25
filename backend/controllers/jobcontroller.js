@@ -20,6 +20,17 @@ exports.postJob = async(req,res) =>{
     const user = await User.findById(jobDetails.companyID);
     user.jobs.push(job._id);
     user.save();
+    const followers = user.followers;
+    followers.map( async function(item){
+        const follower = await User.findById(item);
+        follower.notifications.push(
+            {
+                sender : jobDetails.companyID,
+                types : "JOB",
+            }
+        )
+        follower.save();
+    } )
     res.status(200).json({
         success:true,
         message:"Job Created",
