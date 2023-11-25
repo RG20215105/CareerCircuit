@@ -174,7 +174,7 @@ exports.getCompanyDetails = async(req,res)=>{
 }
 //get user details
 
-exports.getuserdetails=catchasyncerrors(async(req,res,next)=>{
+exports.getloggeduserdetails=catchasyncerrors(async(req,res,next)=>{
     const user=await User.findById(req.user.id);
 
     res.status(200).json({
@@ -182,6 +182,18 @@ exports.getuserdetails=catchasyncerrors(async(req,res,next)=>{
         user,
     });
 });
+
+//get specific user details
+
+exports.getuserdetails=catchasyncerrors(async(req,res,next)=>{
+    console.log(req.params.id);
+    const user=await User.findById(req.params.id);
+    res.status(200).json({
+        success:true,
+        user
+    });
+});
+
 
 //update user password
 
@@ -271,9 +283,9 @@ exports.createpost = catchasyncerrors(async (req, res, next) => {
             url: result.secure_url,
         });
     }
-
     req.body.images = imageslink;
     req.body.user = req.user.id;
+    
     const post = await Post.create(req.body);
     res.status(201).json({
         success: true,
@@ -342,16 +354,6 @@ exports.createlike=catchasyncerrors(async(req,res,next)=>{
 });  
 
 
-//get user details
-
-exports.getuserdetails=catchasyncerrors(async(req,res,next)=>{
-    const user=await User.findById(req.user.id);
-
-    res.status(200).json({
-        success:true,
-        user,
-    });
-});
 
 //get specific user details
 exports.getalluserdetails=catchasyncerrors(async(req,res,next)=>{
@@ -362,3 +364,71 @@ exports.getalluserdetails=catchasyncerrors(async(req,res,next)=>{
         user,
     });
 });
+
+
+//connection request
+exports.newConnection=catchasyncerrors(async(req,res,next)=>{
+   if(req.user.id===req.body.id){
+    return next(new ErrorHandler("Can't connect to yourself", 404));
+   }
+    let user = await User.findById(req.body.id);
+    myComment = {
+        "sender" : `${req.user.id}`, 
+        "types" : "Connection_Request",
+        "dated": Date.now()
+    };
+   user.notifications.push(myComment);
+   await user.save();
+    res.status(200).json({
+        success:true,
+        user,
+    });
+});  
+
+//accept connection request
+exports.AcceptConnection=catchasyncerrors(async(req,res,next)=>{
+
+     let user = await User.findById(req.user.id);
+    console.log(req.body.id);
+     let noti=user.notifications;
+     let newnoti=[];
+     for(var i=0;i<noti.length;i++){
+        if(noti[i].sender.toString()!==req.body.id){
+            newnoti.push(noti[i]);
+        }
+     }
+    user.notifications=newnoti;
+    user.connections.push(req.body.id);
+    await user.save();
+     res.status(200).json({
+         success:true,
+         user,
+     });
+ });  
+
+ //reject connection request
+exports.RejectConnection=catchasyncerrors(async(req,res,next)=>{
+
+    let user = await User.findById(req.user.id);
+    console.log(req.body.id);
+     let noti=user.notifications;
+     let newnoti=[];
+     for(var i=0;i<noti.length;i++){
+        if(noti[i].sender.toString()!==req.body.id){
+            newnoti.push(noti[i]);
+        }
+     }
+    user.notifications=newnoti;
+    await user.save();
+     res.status(200).json({
+         success:true,
+         user,
+     });
+ });  
+
+
+ exports.getConnections= async(req,res)=>{
+    const data = await User.findById(req.params.id).populate("connections");
+    console.log(data);
+    res.send(data);
+ }

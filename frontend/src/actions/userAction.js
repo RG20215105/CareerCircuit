@@ -40,6 +40,18 @@ import {
   ALL_USER_FAIL,
   ALL_USER_REQUEST,
   ALL_USER_SUCCESS,
+  SPECIFIC_USER_FAIL,
+  SPECIFIC_USER_REQUEST,
+  SPECIFIC_USER_SUCCESS,
+  NEW_CONNECTION_REQUEST,
+  NEW_CONNECTION_SUCCESS,
+  NEW_CONNECTION_FAIL,
+ACCEPT_CONNECTION_REQUEST,
+ACCEPT_CONNECTION_SUCCESS,
+ACCEPT_CONNECTION_FAIL,
+REJECT_CONNECTION_REQUEST,
+REJECT_CONNECTION_SUCCESS,
+REJECT_CONNECTION_FAIL,
 
   CLEAR_ERRORS,
 } from "../constants/userConstants";
@@ -95,6 +107,7 @@ export const loadUser = () => async (dispatch) => {
     dispatch({ type: LOAD_USER_FAIL, payload: error.response.data.message });
   }
 };
+
 
 //logout
 export const logout = () => async (dispatch) => {
@@ -306,3 +319,66 @@ export const getallUser =() => async (dispatch) => {
     });
   }
 };
+
+// get specific user details
+export const SpecUser = (id) => async (dispatch) => {
+  try {
+    dispatch({ type: SPECIFIC_USER_REQUEST });
+
+    const { data } = await axios.get(`/else/${id}`);
+
+    dispatch({ type: SPECIFIC_USER_SUCCESS, payload: data.user });
+  } catch (error) {
+    dispatch({ type: SPECIFIC_USER_FAIL, payload: error.response.data.message });
+  }
+};
+
+  //Connection request
+  export const Connect = (userid) => async (dispatch) => {
+    try {
+      dispatch({ type: NEW_CONNECTION_REQUEST });
+  
+      const config = { headers: { "Content-Type": "application/json" } };
+  
+      const { data } = await axios.put(`/doconnect`, userid, config);
+  
+      dispatch({ type: NEW_CONNECTION_SUCCESS, payload: data.success });
+    } catch (error) {
+      dispatch({
+        type: NEW_CONNECTION_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+   //Accept Connection request
+   export const Accepted = (userid) => async (dispatch) => {
+    try {
+      dispatch({ type: ACCEPT_CONNECTION_REQUEST });  
+      const config = { headers: { "Content-Type": "application/json" } };
+      const { data } = await axios.put(`/AcceptConnection`, userid, config);
+  
+      dispatch({ type: ACCEPT_CONNECTION_SUCCESS, payload: data.success });
+    } catch (error) {
+      dispatch({
+        type: ACCEPT_CONNECTION_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };
+
+   //Reject Connection request
+   export const Rejected = (userid) => async (dispatch) => {
+    try {
+      dispatch({ type: REJECT_CONNECTION_REQUEST });  
+      const config = { headers: { "Content-Type": "application/json" } };
+      const { data } = await axios.put(`/RejectConnection`, userid, config);
+  
+      dispatch({ type: REJECT_CONNECTION_SUCCESS, payload: data.success });
+    } catch (error) {
+      dispatch({
+        type: REJECT_CONNECTION_FAIL,
+        payload: error.response.data.message,
+      });
+    }
+  };

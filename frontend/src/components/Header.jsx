@@ -5,17 +5,13 @@ import { useEffect } from "react";
 const Header = () => {
   const navigate = useNavigate();
   const { isAuthenticated, user } = useSelector((state) => state.user);
-  // console.log(user);
+  
   const dispatch = useDispatch();
   const logoutHandler = ()=>{
     dispatch(logout())
     navigate("/");
   }
-  useEffect( ()=>{
-    if(isAuthenticated){
-      navigate('/')
-    }
-  },[dispatch,isAuthenticated]);
+ 
   return (
     <header className="text-gray-400 bg-gray-900 body-font">
       <div className="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center font-semibold">
@@ -47,9 +43,7 @@ const Header = () => {
               <button className="inline-flex items-center bg-yellow-500 border-0 py-1 px-3 text-white font-semibold focus:outline-  hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
                 Company
               </button></Link>
-              <Link to="/signin"><button className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-  hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
-                Sign in
-              </button></Link>
+             
               <Link to="/login"><button className="inline-flex items-center bg-purple-500 border-0 py-1 px-3 text-white font-semibold focus:outline-none hover:bg-gray-700 rounded text-base mt-4 md:mt-0">
                 Login
               </button></Link>

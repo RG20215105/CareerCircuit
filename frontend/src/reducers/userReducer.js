@@ -40,7 +40,9 @@ LOAD_USER_SUCCESS,
 ALL_USER_FAIL,
 ALL_USER_REQUEST,
 ALL_USER_SUCCESS,
-
+SPECIFIC_USER_FAIL,
+SPECIFIC_USER_REQUEST,
+SPECIFIC_USER_SUCCESS,
 
   CLEAR_ERRORS,
 } from "../constants/userConstants";
@@ -327,3 +329,38 @@ export const usersReducer = (state = { users: [] }, action) => {
       return state;
   }
 };
+
+
+export const specuserReducer = (state = { loading:true,Spec_user: {} }, action) => {
+  switch (action.type) {
+    
+    case SPECIFIC_USER_REQUEST:
+      return {
+        loading: true,
+      };
+   
+    case SPECIFIC_USER_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        Spec_user: action.payload,
+      };
+
+    case SPECIFIC_USER_FAIL:
+      return {
+        ...state,
+        loading: false,
+        Spec_user: null,
+        error: action.payload,
+      };
+    case CLEAR_ERRORS:
+      return {
+        ...state,
+        error: null,
+      };
+
+    default:
+      return state;
+  }
+};
+
