@@ -28,6 +28,7 @@ exports.allConnections = catchasyncerrors(async (req, res, next) => {
   }
 });
 const Post=require("../models/postmodel");
+const { stringify } = require("querystring");
 
 //register user
 exports.registerUser=catchasyncerrors(async(req,res,next)=>{
@@ -362,3 +363,38 @@ exports.getalluserdetails=catchasyncerrors(async(req,res,next)=>{
         user,
     });
 });
+
+exports.companyFollow = async(req,res)=>{
+    const {follower,following} = req.body;
+    const user = await User.findById(follower);
+    const company = await User.findById(following);
+
+    company.followers.push(follower);
+    company.save();
+    user.following.push(following);
+    user.save();
+
+    res.status(200).json({
+        msg : "Following"
+    })
+}
+exports.companyUnfollow = async(req,res)=>{
+    
+    const {follower,following} = req.body;
+    const user = await User.findById(follower);
+    const company = await User.findById(following);
+    company.followers =  company.followers.filter((item)=>{
+        return item.toString() !== follower;
+    })
+    company.save();
+    
+    user.following = user.following.filter( (item)=>{
+        return item.toString()!==following;
+    })
+    user.save();
+
+
+    res.status(200).json({
+        msg : "Unfollowing"
+    })
+}

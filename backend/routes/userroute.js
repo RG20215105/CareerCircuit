@@ -19,6 +19,8 @@ const {
   getPostDetails,
   createlike,
   getalluserdetails,
+  companyFollow,
+  companyUnfollow,
 } = require("../controllers/usercontroller");
 const { protect } = require("../middleware/authMiddleware");
 const { isAuthenticatedUser } = require("../middleware/auth");
@@ -47,7 +49,8 @@ router.route("/company/updateprofile").post(profileUpdateCompany);
 router.route("/company/getprofile").post(getCompanyProfile);
 
 router.route("/company/details").post(getCompanyDetails);
-
+router.route("/company/follow").post(companyFollow);
+router.route("/company/unfollow").post(companyUnfollow);
 module.exports = router;
 
 module.exports = router;

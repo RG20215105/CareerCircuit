@@ -8,6 +8,7 @@ import { ToastContainer, toast } from "react-toastify";
 const ProfileCompany = () => {
   const navigater = useNavigate();
   const [company, setCompany] = useState(null);
+  const [count,setCount] = useState(0);
   const [isFollowing, setIsFollowing] = useState(false);
   const { state } = useLocation();
   const userID = state.id;
@@ -22,23 +23,26 @@ const ProfileCompany = () => {
       if (isFollowing) {
         //unfollow
         axios
-          .post("http://localhost:4000/unfollow", {
+        .post("http://localhost:4000/company/unfollow", {
             follower: user._id,
             following: company._id,
           })
           .then((res) => {
             notify("Unfollowed");
+            setCount(count-1);
             setIsFollowing(!isFollowing);
           });
       } else {
         //follow
+        
         axios
-          .post("http://localhost:4000/follow", {
+          .post("http://localhost:4000/company/follow", {
             follower: user._id,
             following: company._id,
           })
           .then((res) => {
             notify("Following");
+            setCount(count+1);
             setIsFollowing(!isFollowing);
           });
       }
@@ -52,14 +56,15 @@ const ProfileCompany = () => {
       .post("http://localhost:4000/company/details", { id: userID })
       .then((res) => {
         setCompany(res.data);
-        if (isAuthenticated) {
-          const result = res.data.follwers.find(  (id) => {
+          // console.log(res.data.followers);
+          setCount(res.data.followers.length);
+          const result = res.data.followers.find(  (id) => {
             return id === user._id;
           });
           if (result) {
+            // console.log('found')
             setIsFollowing(true);
           }
-        }
       })
       .catch((err) => {
         console.log(err);
@@ -93,7 +98,7 @@ const ProfileCompany = () => {
                       {isFollowing ? "Following" : "Follow"}
                     </button>
                   </div>
-                  <p className="mt-1">Followers : {company.followers.length}</p>
+                  <p className="mt-1">Followers : {count}</p>
                 </div>
                 <div class="sm:w-2/3 sm:pl-8 sm:py-8 sm:border-l border-gray-800 sm:border-t-0 border-t mt-4 pt-4 sm:mt-0 text-center sm:text-left">
                   <p class="leading-relaxed text-lg mb-4">

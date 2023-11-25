@@ -49,6 +49,7 @@ const UpdateProfile = () => {
   const addSkill=(e)=>{
   e.preventDefault();
     setskills(current => [...current,skill]);
+    setSkill("");
   }
 
   const updateProfileDataChange = (e) => {
