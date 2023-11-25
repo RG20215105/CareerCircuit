@@ -17,7 +17,7 @@ const UpdateProfile = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phoneno, setPhone] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState(user.avatar);
   const [avatarPreview, setAvatarPreview] = useState(user.avatar);
   const [description, setDescription] = useState("");
   const [skills, setskills] = useState([]);
